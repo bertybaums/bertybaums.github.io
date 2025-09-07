@@ -3,96 +3,225 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name - Personal Webpage</title>
+    <title>Bert Baumgaertner | Professor</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
+            font-family: 'Inter', sans-serif;
         }
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 1em 0;
-            text-align: center;
+        .tab-content {
+            display: none;
         }
-        nav {
-            margin: 0;
-            padding: 0;
-            text-align: center;
+        .tab-content.active {
+            display: block;
         }
-        nav a {
-            margin: 0 1em;
-            color: #fff;
-            text-decoration: none;
-            font-weight: bold;
+        .nav-link {
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
-        .container {
-            max-width: 900px;
-            margin: 2em auto;
-            background-color: #fff;
-            padding: 2em;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        .nav-link.active {
+            border-bottom-color: #3B82F6; /* blue-500 */
+            color: #1E40AF; /* blue-800 */
+            font-weight: 600;
         }
-        section {
-            margin-bottom: 2em;
+        .publication-item {
+            border-left: 3px solid #D1D5DB; /* gray-300 */
+            padding-left: 1.5rem;
+            margin-bottom: 2rem;
+            transition: border-color 0.3s ease;
         }
-        h1, h2 {
-            color: #333;
-        }
-        footer {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 1em 0;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
+        .publication-item:hover {
+            border-left-color: #3B82F6; /* blue-500 */
         }
     </style>
 </head>
-<body>
+<body class="bg-gray-50 text-gray-800">
 
-<header>
-    <h1>Your Name</h1>
-    <nav>
-        <a href="#about">About Me</a>
-        <a href="#research">Research</a>
-        <a href="#teaching">Teaching</a>
-    </nav>
-</header>
+    <div class="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-12">
+        
+        <!-- Header Section -->
+        <header class="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-8 mb-10">
+            <div class="flex-shrink-0">
+                <img class="h-32 w-32 rounded-full object-cover shadow-lg" src="https://placehold.co/400x400/EBF4FF/3B82F6?text=BB" alt="Bert Baumgaertner">
+            </div>
+            <div>
+                <h1 class="text-4xl font-bold text-gray-900">Bert Baumgaertner</h1>
+                <p class="text-xl text-blue-700 mt-1">Professor, Department of Politics and Philosophy</p>
+                <p class="text-md text-gray-600">University of Idaho</p>
+                <div class="mt-3 flex space-x-4 text-gray-500">
+                    <a href="mailto:bbaum@uidaho.edu" class="hover:text-blue-600 transition">Email</a>
+                    <a href="https://scholar.google.com/citations?user=your_scholar_id" target="_blank" class="hover:text-blue-600 transition">Google Scholar</a>
+                    <a href="#" class="hover:text-blue-600 transition">CV (PDF)</a>
+                </div>
+            </div>
+        </header>
 
-<div class="container">
-    <section id="about">
-        <h2>About Me</h2>
-        <p>I am an Associate Professor at the University of Idaho. I consider myself a computational philosopher, meaning that I use algorithmic thinking to inform philosophical questions, and apply philosophical perspectives to the formal modeling and empirical study of social-behavioral processes. I am highly collaborative and interdisciplinary; what I love about philosophy is its emphasis on the development of clear and coherent ideas, and less so on any specific field.  </p>
-    </section>
+        <!-- Navigation -->
+        <nav class="border-b border-gray-300 mb-8">
+            <ul class="flex flex-wrap -mb-px">
+                <li><a class="nav-link inline-block p-4 border-b-2 border-transparent rounded-t-lg active" data-tab="home">Home</a></li>
+                <li><a class="nav-link inline-block p-4 border-b-2 border-transparent rounded-t-lg" data-tab="research">Research</a></li>
+                <li><a class="nav-link inline-block p-4 border-b-2 border-transparent rounded-t-lg" data-tab="publications">Publications</a></li>
+                <li><a class="nav-link inline-block p-4 border-b-2 border-transparent rounded-t-lg" data-tab="teaching">Teaching</a></li>
+            </ul>
+        </nav>
 
-    <section id="research">
-        <h2>Research</h2>
-        <p>Here you can find my research work:</p>
-        <ul>
-            <li><strong>Research Paper 1:</strong> Description of your research paper 1.</li>
-            <li><strong>Research Paper 2:</strong> Description of your research paper 2.</li>
-            <li><strong>Research Paper 3:</strong> Description of your research paper 3.</li>
-        </ul>
-    </section>
+        <!-- Main Content -->
+        <main>
+            <!-- Home Tab -->
+            <div id="home" class="tab-content active animate-fade-in">
+                <div class="bg-white p-8 rounded-lg shadow-md">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">About Me</h2>
+                    <div class="space-y-4 text-gray-700 leading-relaxed">
+                        <p>
+                            I am a Professor in the Department of Politics and Philosophy at the University of Idaho. My work is situated at the intersection of philosophy of science, complex systems, and computational modeling. I am particularly interested in how scientists use diverse modeling techniques to understand complex biological and social phenomena.
+                        </p>
+                        <p>
+                            My research explores questions about scientific explanation, confirmation, and the role of values in science, often using agent-based models and network theory as methodological tools. I lead the Modeling and Theoretical Inquiry in Philosophy (MTIP) Lab, where we develop computational models to investigate philosophical questions.
+                        </p>
+                        <p>
+                            Please feel free to explore my research, publications, and teaching activities using the tabs above. You can contact me via email for inquiries or potential collaborations.
+                        </p>
+                    </div>
+                </div>
+            </div>
 
-    <section id="teaching">
-        <h2>Teaching</h2>
-        <p>Details about your teaching experience:</p>
-        <ul>
-            <li><strong>Course 1:</strong> Description of the course you teach.</li>
-            <li><strong>Course 2:</strong> Description of another course you teach.</li>
-            <li><strong>Course 3:</strong> Description of yet another course you teach.</li>
-        </ul>
-    </section>
-</div>
+            <!-- Research Tab -->
+            <div id="research" class="tab-content animate-fade-in">
+                <div class="bg-white p-8 rounded-lg shadow-md">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6">Research Interests</h2>
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="text-xl font-semibold text-blue-700">Philosophy of Science & Biology</h3>
+                            <p class="mt-2 text-gray-700 leading-relaxed">
+                                My primary research area is the philosophy of science, with a special focus on the life sciences. I investigate how models and simulations contribute to scientific understanding, particularly in fields like ecology, evolutionary biology, and epidemiology. I'm interested in the epistemic status of models that are highly idealized or abstract.
+                            </p>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-blue-700">Computational Modeling & Complex Systems</h3>
+                            <p class="mt-2 text-gray-700 leading-relaxed">
+                                I use computational methods, especially agent-based modeling, to explore complex systems. This work involves both building models to understand specific phenomena (like the spread of information in social networks) and analyzing the foundations of modeling itself. This approach allows for a "laboratory" for philosophical thought experiments.
+                            </p>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-blue-700">Social Epistemology & Network Theory</h3>
+                            <p class="mt-2 text-gray-700 leading-relaxed">
+                                I apply network theory and modeling to questions in social epistemology. This includes studying how the structure of a scientific community affects its ability to produce knowledge, how consensus and diversity are balanced, and how misinformation can spread through social networks.
+                            </p>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-blue-700">Recent Presentations and Focus</h3>
+                            <p class="mt-2 text-gray-700 leading-relaxed">
+                                In recent years, my presentation work has focused heavily on the philosophical and ethical dimensions of artificial intelligence. This includes topics such as AI literacy, the role of large language models (LLMs) and chatbots in spreading or combating misinformation, and the inherent biases in generative AI systems. Alongside this, I continue to present on my long-standing interests in behavioral epidemiology, particularly modeling risk tolerance and its effect on epidemic waves, and foundational questions in social epistemology, such as the dynamics of reflective equilibrium.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-<footer>
-    <p>&copy; 2024 Your Name. All rights reserved.</p>
-</footer>
+            <!-- Publications Tab -->
+            <div id="publications" class="tab-content animate-fade-in">
+                <div class="bg-white p-8 rounded-lg shadow-md">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6">Selected Publications</h2>
+                    <p class="mb-8 text-gray-600">This is a selection of my refereed publications. For a complete list, please see my <a href="#" class="text-blue-600 hover:underline">CV</a> or <a href="#" class="text-blue-600 hover:underline">Google Scholar profile</a>.</p>
+                    
+                    <div class="space-y-8">
+                        <div class="publication-item"><p class="font-semibold text-lg text-gray-800">Heterogeneous risk tolerance, in-groups and epidemic waves.</p><p class="text-gray-600">Tovissode, C., Baumgaertner, B. (2024). <em>Frontiers in Applied Mathematics and Statistics</em>.</p><a href="https://doi.org/10.3389/fams.2024.1360001" target="_blank" class="text-blue-600 hover:underline mt-2 inline-block">View Publication</a></div>
+                        <div class="publication-item"><p class="font-semibold text-lg text-gray-800">Search is a Hammer, Generative Chat is a Loom; Beware the Technological Attribution Error.</p><p class="text-gray-600">Baumgaertner, B., duBois, Z. (2024). In: <em>Social Computing and Social Media. HCII 2024</em>.</p><a href="https://doi.org/10.1007/978-3-031-61281-7_22" target="_blank" class="text-blue-600 hover:underline mt-2 inline-block">View Publication</a></div>
+                        <div class="publication-item"><p class="font-semibold text-lg text-gray-800">Precedent and rest stop convergence in reflective equilibrium.</p><p class="text-gray-600">Baumgaertner, B., Lassiter, C. (2024). <em>Synthese</em>.</p><a href="https://doi.org/10.1007/s11229-024-04499-x" target="_blank" class="text-blue-600 hover:underline mt-2 inline-block">View Publication</a></div>
+                        <div class="publication-item"><p class="font-semibold text-lg text-gray-800">Convergence and Shared Reflective Equilibrium.</p><p class="text-gray-600">Baumgaertner, B., & Lassiter, C. (2023). <em>Ergo</em>.</p><a href="https://doi.org/10.3998/ergo.4654" target="_blank" class="text-blue-600 hover:underline mt-2 inline-block">View Publication</a></div>
+                        <div class="publication-item"><p class="font-semibold text-lg text-gray-800">The logical structure of experiments lays the foundation for a theory of reproducibility.</p><p class="text-gray-600">Buzbas EO, Devezer B, Baumgaertner B. (2023). <em>Royal Society Open Science</em>.</p><a href="https://doi.org/10.1098/rsos.221042" target="_blank" class="text-blue-600 hover:underline mt-2 inline-block">View Publication</a></div>
+                        <div class="publication-item"><p class="font-semibold text-lg text-gray-800">The preference for belief, issue polarization, and echo chambers.</p><p class="text-gray-600">Baumgaertner, B., Justwan, F. (2022). <em>Synthese</em>.</p><a href="https://doi.org/10.1007/s11229-022-03880-y" target="_blank" class="text-blue-600 hover:underline mt-2 inline-block">View Publication</a></div>
+                        <div class="publication-item"><p class="font-semibold text-lg text-gray-800">Meddling in the 2016 Elections and Satisfaction with Democracy in the US.</p><p class="text-gray-600">Justwan, F., Baumgaertner, B., Curtright, M.* (2022). <em>Political Studies</em>.</p><a href="https://doi.org/10.1177/00323217221126300" target="_blank" class="text-blue-600 hover:underline mt-2 inline-block">View Publication</a></div>
+                        <div class="publication-item"><p class="font-semibold text-lg text-gray-800">Transient prophylaxis and multiple epidemic waves.</p><p class="text-gray-600">Tyson, R. C., Marshall, N. M.*, Baumgaertner, B. (2022). <em>AIMS Mathematics</em>.</p><a href="https://doi.org/10.3934/math.2022311" target="_blank" class="text-blue-600 hover:underline mt-2 inline-block">View Publication</a></div>
+                        <div class="publication-item"><p class="font-semibold text-lg text-gray-800">The Effects of COVID-19 on Political Efficacy.</p><p class="text-gray-600">McBrayer, M., Baumgaertner, B., Justwan, F. (2022). <em>American Politics Research</em>.</p><a href="https://doi.org/10.1177/1532673X211041322" target="_blank" class="text-blue-600 hover:underline mt-2 inline-block">View Publication</a></div>
+                        <div class="publication-item"><p class="font-semibold text-lg text-gray-800">Risk of disease and willingness to vaccinate in the United States: a population-based survey.</p><p class="text-gray-600">Baumgaertner, B., Ridenhour, B. J., Justwan, F., Carlisle, J. E., Miller, C. R. (2020). <em>PLOS Medicine</em>.</p><a href="https://doi.org/10.1371/journal.pmed.1003354" target="_blank" class="text-blue-600 hover:underline mt-2 inline-block">View Publication</a></div>
+                        <div class="publication-item"><p class="font-semibold text-lg text-gray-800">Voter models and external influence.</p><p class="text-gray-600">Majmudar, J.R., Krone, S.M., Baumgaertner, B.O., Tyson, R.C. (2020). <em>The Journal of Mathematical Sociology</em>.</p><a href="https://doi.org/10.1080/0022250X.2019.1625349" target="_blank" class="text-blue-600 hover:underline mt-2 inline-block">View Publication</a></div>
+                        <div class="publication-item"><p class="font-semibold text-lg text-gray-800">The timing and nature of behavioural responses affect the course of an epidemic.</p><p class="text-gray-600">Tyson, R., Baumgaertner, B., Hamilton, S.*, Lo, A., Krone, S. (2020). <em>Mathematical Bulletin of Biology</em>.</p><a href="https://doi.org/10.1007/s11538-019-00684-z" target="_blank" class="text-blue-600 hover:underline mt-2 inline-block">View Publication</a></div>
+                        <div class="publication-item"><p class="font-semibold text-lg text-gray-800">The effect of trust and proximity on vaccine propensity.</p><p class="text-gray-600">Justwan, F., Baumgaertner, B., Carlisle, J. E., Carson, E.*, Kizer, J.* (2019). <em>PLoS ONE</em>.</p><a href="https://doi.org/10.1371/journal.pone.0220658" target="_blank" class="text-blue-600 hover:underline mt-2 inline-block">View Publication</a></div>
+                        <div class="publication-item"><p class="font-semibold text-lg text-gray-800">Scientific discovery in a model-centric framework: Reproducibility, innovation, and epistemic diversity.</p><p class="text-gray-600">Devezer, B., Nardin, LG., Baumgaertner, B., Buzbas, E. (2019). <em>PLoS ONE</em>.</p><a href="https://doi.org/10.1371/journal.pone.0216125" target="_blank" class="text-blue-600 hover:underline mt-2 inline-block">View Publication</a></div>
+                        <div class="publication-item"><p class="font-semibold text-lg text-gray-800">Spatial Opinion Dynamics and the Effects of Two Types of Mixing.</p><p class="text-gray-600">Baumgaertner, B., Fetros, P.*, Tyson, R., Krone, S. (2018). <em>Physical Review E</em>.</p><a href="https://doi.org/10.1103/PhysRevE.98.022310" target="_blank" class="text-blue-600 hover:underline mt-2 inline-block">View Publication</a></div>
+                    </div>
+                </div>
+            </div>
 
+            <!-- Teaching Tab -->
+            <div id="teaching" class="tab-content animate-fade-in">
+                <div class="bg-white p-8 rounded-lg shadow-md">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6">Teaching</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        
+                        <!-- Undergraduate Courses -->
+                        <div>
+                            <h3 class="text-xl font-semibold text-blue-700 border-b pb-2 mb-4">Undergraduate Courses</h3>
+                            <ul class="space-y-3 text-gray-700 list-disc list-inside">
+                                <li>PHIL 101: Introduction to Philosophy</li>
+                                <li>PHIL 210: Reason and Argument</li>
+                                <li>PHIL 340: Philosophy of Science</li>
+                                <li>PHIL 450: Topics in Philosophy of Biology</li>
+                            </ul>
+                        </div>
+
+                        <!-- Graduate Courses -->
+                        <div>
+                            <h3 class="text-xl font-semibold text-blue-700 border-b pb-2 mb-4">Graduate Seminars</h3>
+                            <ul class="space-y-3 text-gray-700 list-disc list-inside">
+                                <li>PHIL 520: Seminar in Epistemology (Topic: Social Epistemology)</li>
+                                <li>PHIL 540: Seminar in Philosophy of Science (Topic: Models & Simulations)</li>
+                            </ul>
+                        </div>
+                    </div>
+                     <div class="mt-8 bg-blue-50 border-l-4 border-blue-400 p-4 rounded-r-lg">
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <svg class="h-5 w-5 text-blue-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-sm text-blue-700">
+                                    Course materials and syllabi are available for current students on the university's learning management system. Prospective students interested in course content can contact me directly via email.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="text-center mt-12 text-gray-500 text-sm">
+            <p>&copy; <span id="current-year"></span> Bert Baumgaertner. All rights reserved.</p>
+            <p class="mt-1">Department of Politics and Philosophy, University of Idaho.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    // Deactivate all links and tabs
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    tabContents.forEach(t => t.classList.remove('active'));
+
+                    // Activate clicked link and corresponding tab
+                    const tabId = link.getAttribute('data-tab');
+                    const activeTab = document.getElementById(tabId);
+                    
+                    link.classList.add('active');
+                    activeTab.classList.add('active');
+                });
+            });
+
+            // Set current year in footer
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+        });
+    </script>
 </body>
 </html>
+
