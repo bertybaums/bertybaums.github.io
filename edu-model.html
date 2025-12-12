@@ -44,6 +44,8 @@
         .alert-error { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
 
     </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
 
@@ -115,12 +117,126 @@
         
         <div class="chart-container">
             <h3>Knowledge Gap Analysis</h3>
-            <p><strong>Incoming Ability</strong> (<span id="txtTheta">0</span>) + <strong>Value Added</strong> (<span id="txtValue">0</span>) = <strong>Final Knowledge</strong> (<span id="txtFinal">0</span>)</p>
+            <p>
+                <strong>Incoming Ability</strong> (<span id="txtTheta">0</span>) 
+                + <strong>Value Added</strong> (<span id="txtValue">0</span>) 
+                = <strong>Final Knowledge</strong> (<span id="txtFinal">0</span>)
+            </p>
             <p>vs <strong>Graduation Standard</strong> (<span id="txtStd">0</span>)</p>
-            <div style="height: 10px; background: linear-gradient(90deg, red 0%, yellow 50%, green 100%); border-radius:5px; margin-top:10px;"></div>
-            <div id="gapIndicator" style="text-align: center; margin-top: 5px; font-weight: bold; font-size: 0.9em;"></div>
+            
+            <div style="position: relative; margin: 25px 0 10px 0;">
+                <div style="height: 15px; background: linear-gradient(90deg, #ff4d4d 0%, #ffd700 50%, #4caf50 100%); border-radius: 10px; box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);"></div>
+                
+                <div style="position: absolute; top: -5px; bottom: -5px; left: 50%; width: 2px; background: #333; opacity: 0.3;"></div>
+                
+                <div id="gapMarker" style="
+                    position: absolute; 
+                    top: -12px; 
+                    left: 50%; 
+                    width: 0; 
+                    height: 0; 
+                    border-left: 8px solid transparent; 
+                    border-right: 8px solid transparent; 
+                    border-top: 12px solid #333; 
+                    transform: translateX(-50%); 
+                    transition: left 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+                    filter: drop-shadow(0 2px 2px rgba(0,0,0,0.3));
+                "></div>
+            </div>
+            
+            <div style="display: flex; justify-content: space-between; font-size: 0.7em; color: #888; margin-bottom: 10px;">
+                <span>Failing</span>
+                <span>Meeting Std</span>
+                <span>Exceeding</span>
+            </div>
+        
+            <div id="gapIndicator" style="text-align: center; font-weight: bold; font-size: 0.9em;"></div>
         </div>
-
+        <div class="chart-container">
+            <h3>Under the Hood: The Model Logic</h3>
+            <p style="color:#666; font-size: 0.9em; margin-bottom: 20px;">
+                This diagram illustrates how your policy inputs flow through the system to create outcomes.
+            </p>
+            
+            <svg viewBox="0 0 800 450" style="width: 100%; height: auto; background: #fff;">
+              <defs>
+                <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                  <polygon points="0 0, 10 3.5, 0 7" fill="#555" />
+                </marker>
+              </defs>
+        
+              <rect x="10" y="10" width="200" height="430" fill="#f8f9fa" rx="10" stroke="#eee"/>
+              <text x="110" y="35" text-anchor="middle" font-weight="bold" fill="#1565c0" font-family="sans-serif">USER INPUTS</text>
+              
+              <rect x="590" y="10" width="200" height="430" fill="#f8f9fa" rx="10" stroke="#eee"/>
+              <text x="690" y="35" text-anchor="middle" font-weight="bold" fill="#2e7d32" font-family="sans-serif">SYSTEM OUTPUTS</text>
+        
+              <g font-family="sans-serif" font-size="14px" text-anchor="middle">
+                <rect x="40" y="60" width="140" height="50" rx="5" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
+                <text x="110" y="90">Admission Stds (A)</text>
+                
+                <rect x="40" y="200" width="140" height="50" rx="5" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
+                <text x="110" y="230">Resources (R)</text>
+                
+                <rect x="40" y="340" width="140" height="50" rx="5" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
+                <text x="110" y="370">Grad Standards (S)</text>
+        
+                <rect x="250" y="60" width="140" height="50" rx="5" fill="#fff3e0" stroke="#ef6c00" stroke-width="2"/>
+                <text x="320" y="90">Recruitment Vol</text>
+                
+                <rect x="250" y="140" width="140" height="50" rx="5" fill="#fff3e0" stroke="#ef6c00" stroke-width="2"/>
+                <text x="320" y="170">Incoming Ability</text>
+        
+                <rect x="250" y="200" width="140" height="50" rx="5" fill="#fff3e0" stroke="#ef6c00" stroke-width="2"/>
+                <text x="320" y="230">Value Added</text>
+                
+                <rect x="420" y="170" width="140" height="60" rx="5" fill="#f3e5f5" stroke="#7b1fa2" stroke-width="2"/>
+                <text x="490" y="200" font-weight="bold">Final Knowledge</text>
+                <text x="490" y="220" font-size="11px">(Ability + Value)</text>
+        
+                <polygon points="490,320 560,365 490,410 420,365" fill="#ffebee" stroke="#c62828" stroke-width="2"/>
+                <text x="490" y="360" font-weight="bold" fill="#c62828" font-size="12px">THE GAP CHECK</text>
+                <text x="490" y="380" font-size="11px" fill="#c62828">Is Knowledge > S?</text>
+        
+                <rect x="620" y="60" width="140" height="50" rx="5" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+                <text x="690" y="90">Total Graduates</text>
+                
+                <rect x="620" y="340" width="140" height="50" rx="5" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+                <text x="690" y="370">Retention Rate</text>
+              </g>
+        
+              <g stroke="#555" stroke-width="2" fill="none" marker-end="url(#arrowhead)">
+                <path d="M 180 85 L 250 85"/> 
+                <path d="M 180 85 L 210 85 L 210 165 L 250 165"/>
+                <path d="M 180 225 L 250 225"/>
+                <path d="M 390 165 L 420 185"/>
+                <path d="M 390 225 L 420 215"/>
+                <path d="M 490 230 L 490 320"/>
+                <path d="M 180 365 L 420 365"/>
+                <path d="M 560 365 L 620 365"/>
+                <path d="M 690 340 L 690 110"/>
+                <path d="M 390 85 L 620 85"/>
+              </g>
+            </svg>
+        </div>
+        
+        <div class="chart-container">
+            <h3>Mathematical Definition</h3>
+            <p style="color:#666; font-size: 0.9em;">
+                The system uses a system of coupled equations to determine the output. 
+                Because resources are finite, these variables act as constraints on one another.
+            </p>
+            <div style="overflow-x: auto; padding: 10px;">
+                $$ 
+                \begin{align}
+                \text{Recruitment:} & \quad N_{in} = N_{max} \cdot (1 - A^{1.5}) \\
+                \text{Final Knowledge:} & \quad K = (\theta_{base} + \alpha A) + (\gamma R) \\
+                \text{Retention Rate:} & \quad r = \frac{1}{1 + e^{-5(K - S)}} \\
+                \text{Outcomes:} & \quad \text{Graduates} = N_{in} \cdot r
+                \end{align}
+                $$
+            </div>
+        </div>
     </div>
 </div>
 
@@ -199,6 +315,20 @@
             indicator.innerText = "FAILING: Standards exceed knowledge";
             indicator.style.color = "#d32f2f";
         }
+        // 4. ANIMATE THE NEEDLE
+        // Calculate the gap. Positive = Good (Right), Negative = Bad (Left)
+        // We assume a gap of +/- 0.5 covers the full width of the bar for visual sensitivity.
+        let needlePos = 50 + (gap * 100); 
+
+        // Clamp the needle so it doesn't fly off the screen (keep between 0% and 100%)
+        needlePos = Math.max(2, Math.min(98, needlePos));
+
+        // Apply the style
+        document.getElementById('gapMarker').style.left = needlePos + "%";
+
+        // Change marker color based on status
+        const markerColor = (gap >= 0) ? "#333" : "#d32f2f"; 
+        document.getElementById('gapMarker').style.borderTopColor = markerColor;
 
         // Scenarios
         const msgBox = document.getElementById('scenarioMsg');
