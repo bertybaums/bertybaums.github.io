@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Higher Ed Dynamics Model</title>
+    <style>
+        /* CSS Styles to make it look nice (Simulating a dashboard) */
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: #f0f2f6; color: #31333F; margin: 0; padding: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 20px; }
+        
+        /* Sidebar Styling */
+        .sidebar { flex: 1; min-width: 300px; background: white; padding: 25px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .main-content { flex: 3; min-width: 300px; display: flex; flex-direction: column; gap: 20px; }
+        
+        /* Control Styling */
+        .control-group { margin-bottom: 25px; }
+        label { display: block; font-weight: 600; margin-bottom: 8px; }
+        input[type=range] { width: 100%; cursor: pointer; }
+        .help-text { font-size: 0.85em; color: #666; margin-top: 5px; }
+        
+        /* Metrics Styling */
+        .metrics-row { display: flex; gap: 15px; flex-wrap: wrap; }
+        .metric-card { flex: 1; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); text-align: center; min-width: 150px; }
+        .metric-value { font-size: 2em; font-weight: bold; color: #0f1116; }
+        .metric-label { font-size: 0.9em; color: #666; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* Chart Styling */
+        .chart-container { background: white; padding: 25px; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .bar-group { margin-bottom: 15px; }
+        .bar-label { font-size: 0.9em; margin-bottom: 5px; display: flex; justify-content: space-between; }
+        .bar-bg { background: #e0e0e0; height: 25px; border-radius: 12px; overflow: hidden; }
+        .bar-fill { height: 100%; transition: width 0.3s ease; display: flex; align-items: center; justify-content: flex-end; padding-right: 10px; color: white; font-size: 0.8em; font-weight: bold; }
+        
+        /* Pipeline Colors */
+        .fill-blue { background-color: #4facfe; }
+        .fill-green { background-color: #00ba38; }
+        .fill-gray { background-color: #a0a0a0; }
+
+        /* Alert Box */
+        .alert-box { padding: 15px; border-radius: 8px; font-weight: 500; display: none; margin-top: 20px; }
+        .alert-warning { background-color: #ffeba0; color: #856404; border: 1px solid #ffeeba; }
+        .alert-info { background-color: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+        .alert-error { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="sidebar">
+        <h2>Policy Levers</h2>
+        <p>Adjust the sliders to simulate institutional strategy.</p>
+        <hr>
+        
+        <div class="control-group">
+            <label>Admission Standards (Selectivity)</label>
+            <input type="range" id="inputA" min="0" max="1" step="0.05" value="0.3">
+            <div class="help-text">Low = Open Enrollment | High = Exclusive</div>
+        </div>
+
+        <div class="control-group">
+            <label>Resources (Budget/Support)</label>
+            <input type="range" id="inputR" min="0" max="1" step="0.05" value="0.5">
+            <div class="help-text">Funding for faculty, tutoring, facilities.</div>
+        </div>
+
+        <div class="control-group">
+            <label>Graduation Standards (Rigor)</label>
+            <input type="range" id="inputS" min="0.1" max="1" step="0.05" value="0.5">
+            <div class="help-text">Difficulty required to earn the degree.</div>
+        </div>
+        
+        <div class="alert-box" id="scenarioMsg"></div>
+    </div>
+
+    <div class="main-content">
+        <div class="metrics-row">
+            <div class="metric-card">
+                <div class="metric-label">Recruitment</div>
+                <div class="metric-value" id="valRecruit">0</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Retention Rate</div>
+                <div class="metric-value" id="valRetention">0%</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Total Graduates</div>
+                <div class="metric-value" id="valGrads">0</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Reputation</div>
+                <div class="metric-value" id="valRep">0.0</div>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <h3>The Student Pipeline</h3>
+            
+            <div class="bar-group">
+                <div class="bar-label"><span>1. Applicants</span> <span id="numApp">1000</span></div>
+                <div class="bar-bg"><div class="bar-fill fill-gray" style="width: 100%">100%</div></div>
+            </div>
+
+            <div class="bar-group">
+                <div class="bar-label"><span>2. Admitted Students</span> <span id="numAdm">0</span></div>
+                <div class="bar-bg"><div class="bar-fill fill-blue" id="barAdm" style="width: 0%"></div></div>
+            </div>
+
+            <div class="bar-group">
+                <div class="bar-label"><span>3. Graduates</span> <span id="numGrad">0</span></div>
+                <div class="bar-bg"><div class="bar-fill fill-green" id="barGrad" style="width: 0%"></div></div>
+            </div>
+        </div>
+        
+        <div class="chart-container">
+            <h3>Knowledge Gap Analysis</h3>
+            <p><strong>Incoming Ability</strong> (<span id="txtTheta">0</span>) + <strong>Value Added</strong> (<span id="txtValue">0</span>) = <strong>Final Knowledge</strong> (<span id="txtFinal">0</span>)</p>
+            <p>vs <strong>Graduation Standard</strong> (<span id="txtStd">0</span>)</p>
+            <div style="height: 10px; background: linear-gradient(90deg, red 0%, yellow 50%, green 100%); border-radius:5px; margin-top:10px;"></div>
+            <div id="gapIndicator" style="text-align: center; margin-top: 5px; font-weight: bold; font-size: 0.9em;"></div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    // --- THE JAVASCRIPT ENGINE ---
+    // This replicates the Python logic exactly in the browser.
+
+    const inputs = ['inputA', 'inputR', 'inputS'];
+    inputs.forEach(id => document.getElementById(id).addEventListener('input', updateModel));
+
+    function updateModel() {
+        // 1. Get Inputs
+        const A = parseFloat(document.getElementById('inputA').value);
+        const R = parseFloat(document.getElementById('inputR').value);
+        const S = parseFloat(document.getElementById('inputS').value);
+
+        // 2. The Math (Same as Python)
+        const baseApplicants = 1000;
+        
+        // Recruitment Volume
+        const N_in = baseApplicants * (1 - Math.pow(A, 1.5));
+        
+        // Incoming Ability
+        const theta = 0.2 + (0.8 * A);
+        
+        // Value Added
+        const valueAdded = 0.4 * R;
+        
+        // Final Knowledge
+        const K = theta + valueAdded;
+        
+        // Retention Rate (Sigmoid function)
+        const gap = K - S;
+        let retention = 1 / (1 + Math.exp(-5 * (gap + 0.1)));
+        retention = Math.max(0, Math.min(1, retention)); // Clamp 0-1
+
+        // Outcomes
+        const N_out = N_in * retention;
+        
+        // Reputation
+        let rep = (S * 0.7) + (K * 0.3);
+        if (retention < 0.2) rep = rep * 0.5;
+
+        // 3. Update DOM (Visuals)
+        
+        // Metrics
+        document.getElementById('valRecruit').innerText = Math.round(N_in).toLocaleString();
+        document.getElementById('valRetention').innerText = (retention * 100).toFixed(1) + "%";
+        document.getElementById('valGrads').innerText = Math.round(N_out).toLocaleString();
+        document.getElementById('valRep').innerText = rep.toFixed(2);
+
+        // Pipeline Bars
+        document.getElementById('numApp').innerText = baseApplicants;
+        
+        document.getElementById('numAdm').innerText = Math.round(N_in);
+        const pctAdm = (N_in / baseApplicants) * 100;
+        document.getElementById('barAdm').style.width = pctAdm + "%";
+        document.getElementById('barAdm').innerText = Math.round(pctAdm) + "%";
+
+        document.getElementById('numGrad').innerText = Math.round(N_out);
+        const pctGradOfTotal = (N_out / baseApplicants) * 100; // Relative to total applicants for scale
+        document.getElementById('barGrad').style.width = pctGradOfTotal + "%";
+        document.getElementById('barGrad').innerText = Math.round(N_out);
+
+        // Gap Text
+        document.getElementById('txtTheta').innerText = theta.toFixed(2);
+        document.getElementById('txtValue').innerText = valueAdded.toFixed(2);
+        document.getElementById('txtFinal').innerText = K.toFixed(2);
+        document.getElementById('txtStd').innerText = S.toFixed(2);
+        
+        const indicator = document.getElementById('gapIndicator');
+        if(K >= S) {
+            indicator.innerText = "PASSING: Students exceed standards";
+            indicator.style.color = "green";
+        } else {
+            indicator.innerText = "FAILING: Standards exceed knowledge";
+            indicator.style.color = "#d32f2f";
+        }
+
+        // Scenarios
+        const msgBox = document.getElementById('scenarioMsg');
+        msgBox.style.display = 'block';
+        msgBox.className = 'alert-box'; // reset
+
+        if (A < 0.3 && S > 0.7 && R < 0.5) {
+            msgBox.classList.add('alert-error');
+            msgBox.innerHTML = "⚠️ <strong>Revolving Door:</strong> High access, high standards, low support. Expect mass failure.";
+        } else if (A > 0.8) {
+            msgBox.classList.add('alert-info');
+            msgBox.innerHTML = "ℹ️ <strong>Ivy League Model:</strong> High filter means easy retention, but low access.";
+        } else if (S < 0.3) {
+            msgBox.classList.add('alert-warning');
+            msgBox.innerHTML = "⚠️ <strong>Diploma Mill:</strong> Everyone passes because standards are too low.";
+        } else {
+            msgBox.style.display = 'none';
+        }
+    }
+
+    // Initialize
+    updateModel();
+</script>
+
+</body>
+</html>
