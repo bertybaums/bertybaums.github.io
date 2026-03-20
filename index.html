@@ -3,187 +3,683 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bert Baumgaertner | Professor</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Bert Baumgaertner | Professor of Philosophy</title>
+    <meta name="description" content="Bert Baumgaertner — Professor of Philosophy at the University of Idaho. Research in cognitive science, computational philosophy, social epistemology, AI ethics, and the MARC project.">
+    <meta property="og:title" content="Bert Baumgaertner | Professor of Philosophy">
+    <meta property="og:description" content="Professor of Philosophy at the University of Idaho. Research in cognitive science, computational philosophy, social epistemology, and AI ethics.">
+    <meta property="og:type" content="website">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg-primary: #1a1a1a;
+            --bg-secondary: #242424;
+            --bg-card: #2a2a2a;
+            --bg-card-hover: #323232;
+            --orange: #e8620a;
+            --orange-light: #f07a2a;
+            --orange-dim: rgba(232, 98, 10, 0.15);
+            --text-primary: #e8e8e8;
+            --text-secondary: #a0a0a0;
+            --text-muted: #707070;
+            --border: #3a3a3a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
         }
-        .tab-content {
-            display: none;
+
+        a { color: var(--orange-light); text-decoration: none; transition: color 0.2s; }
+        a:hover { color: #ff9a52; }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem;
         }
-        .tab-content.active {
-            display: block;
+
+        /* Header */
+        .header {
+            display: flex;
+            align-items: flex-start;
+            gap: 2rem;
+            margin-bottom: 2.5rem;
         }
+
+        .header-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--orange);
+            flex-shrink: 0;
+        }
+
+        .header-info h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.2;
+            color: #fff;
+        }
+
+        .header-roles {
+            margin-top: 0.75rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .header-roles span {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        .header-links {
+            margin-top: 1rem;
+            display: flex;
+            gap: 1.25rem;
+            flex-wrap: wrap;
+        }
+
+        .header-links a {
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--orange);
+            border-bottom: 1px solid transparent;
+            padding-bottom: 1px;
+        }
+
+        .header-links a:hover {
+            border-bottom-color: var(--orange-light);
+        }
+
+        /* Navigation */
+        .nav {
+            display: flex;
+            gap: 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 2.5rem;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
         .nav-link {
+            padding: 0.75rem 1.25rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-muted);
             cursor: pointer;
-            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s;
+            white-space: nowrap;
+            user-select: none;
         }
+
+        .nav-link:hover {
+            color: var(--text-secondary);
+        }
+
         .nav-link.active {
-            border-bottom-color: #3B82F6; /* blue-500 */
-            color: #1E40AF; /* blue-800 */
+            color: var(--orange);
+            border-bottom-color: var(--orange);
+        }
+
+        /* Tab content */
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* Cards */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .card h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 1.25rem;
+        }
+
+        .card h3 {
+            font-size: 1.1rem;
             font-weight: 600;
+            color: var(--orange);
+            margin-bottom: 0.5rem;
         }
-        .publication-item {
-            border-left: 3px solid #D1D5DB; /* gray-300 */
-            padding-left: 1.5rem;
-            margin-bottom: 2rem;
-            transition: border-color 0.3s ease;
+
+        .card p, .card li {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
         }
-        .publication-item:hover {
-            border-left-color: #3B82F6; /* blue-500 */
+
+        .section-block {
+            padding: 1.25rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-block:last-child { border-bottom: none; }
+        .section-block:first-of-type { padding-top: 0; }
+
+        /* Publication items */
+        .pub-item {
+            padding: 1.25rem 0;
+            padding-left: 1.25rem;
+            border-left: 2px solid var(--border);
+            border-bottom: none;
+            transition: border-color 0.2s;
+        }
+
+        .pub-item:hover {
+            border-left-color: var(--orange);
+        }
+
+        .pub-item .pub-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .pub-item .pub-meta {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+
+        .pub-item .pub-link {
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-top: 0.4rem;
+            display: inline-block;
+        }
+
+        /* Talk items */
+        .talk-item {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .talk-item:last-child { border-bottom: none; }
+
+        .talk-title {
+            font-weight: 500;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+        }
+
+        .talk-meta {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 0.2rem;
+        }
+
+        .talk-badge {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 0.15rem 0.5rem;
+            border-radius: 3px;
+            margin-left: 0.5rem;
+            vertical-align: middle;
+        }
+
+        .badge-invited {
+            background: var(--orange-dim);
+            color: var(--orange-light);
+        }
+
+        .badge-peer {
+            background: rgba(100, 180, 255, 0.12);
+            color: #7ab8f5;
+        }
+
+        /* MARC highlight */
+        .marc-highlight {
+            background: var(--orange-dim);
+            border: 1px solid rgba(232, 98, 10, 0.3);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 1.25rem;
+        }
+
+        .marc-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1.25rem;
+        }
+
+        .marc-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--orange-light);
+            transition: all 0.2s;
+        }
+
+        .marc-link:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--orange);
+            color: #ff9a52;
+        }
+
+        /* Teaching grid */
+        .teaching-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .teaching-list {
+            list-style: none;
+        }
+
+        .teaching-list li {
+            padding: 0.4rem 0;
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .teaching-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.85rem;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--orange);
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .header-links {
+                justify-content: center;
+            }
+
+            .header-info h1 {
+                font-size: 1.75rem;
+            }
+
+            .teaching-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-link {
+                padding: 0.75rem 0.85rem;
+                font-size: 0.82rem;
+            }
+
+            .card {
+                padding: 1.25rem;
+            }
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body>
+    <div class="container">
 
-    <div class="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-12">
-        
-        <!-- Header Section -->
-        <header class="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-8 mb-10">
-            <div class="flex-shrink-0">
-                <img class="h-32 w-32 rounded-full object-cover shadow-lg" src="bert-baumgaertner.jpg" alt="Bert Baumgaertner">
-            </div>
-            <div>
-                <h1 class="text-4xl font-bold text-gray-900">Bert Baumgaertner</h1>
-                <p class="text-xl text-blue-700 mt-1">Professor, Department of Politics and Philosophy</p>
-                <p class="text-md text-gray-600">University of Idaho</p>
-                <div class="mt-3 flex space-x-4 text-gray-500">
-                    <a href="mailto:bbaum@uidaho.edu" class="hover:text-blue-600 transition">Email</a>
-                    <a href="https://scholar.google.com/citations?user=your_scholar_id" target="_blank" class="hover:text-blue-600 transition">Google Scholar</a>
-                    <a href="BaumgaertnerCV.pdf" class="hover:text-blue-600 transition">CV (PDF)</a>
+        <!-- Header -->
+        <header class="header">
+            <img class="header-photo" src="bert-baumgaertner.jpg" alt="Bert Baumgaertner">
+            <div class="header-info">
+                <h1>Bert Baumgaertner</h1>
+                <div class="header-roles">
+                    <span>Professor of Philosophy, <a href="https://www.uidaho.edu/class/politics-and-philosophy/our-people/bert-baumgaertner" target="_blank">University of Idaho</a></span>
+                    <span>Modeling Core Co-Director, <a href="https://imci.uidaho.edu" target="_blank">Institute for Modeling Collaboration &amp; Innovation</a></span>
+                    <span>Co-Founder, AI Ethics and Inquiry Outfit</span>
+                </div>
+                <div class="header-links">
+                    <a href="mailto:bbaum@uidaho.edu">Email</a>
+                    <a href="https://scholar.google.com/citations?user=57-9utcAAAAJ&hl=en" target="_blank">Google Scholar</a>
+                    <a href="https://orcid.org/0000-0001-8803-4771" target="_blank">ORCID</a>
+                    <a href="BaumgaertnerCV.pdf">CV (PDF)</a>
+                    <a href="https://bertbaum.substack.com/" target="_blank">Substack</a>
                 </div>
             </div>
         </header>
 
         <!-- Navigation -->
-        <nav class="border-b border-gray-300 mb-8">
-            <ul class="flex flex-wrap -mb-px">
-                <li><a class="nav-link inline-block p-4 border-b-2 border-transparent rounded-t-lg active" data-tab="home">Home</a></li>
-                <li><a class="nav-link inline-block p-4 border-b-2 border-transparent rounded-t-lg" data-tab="research">Research</a></li>
-                <li><a class="nav-link inline-block p-4 border-b-2 border-transparent rounded-t-lg" data-tab="publications">Publications</a></li>
-                <li><a class="nav-link inline-block p-4 border-b-2 border-transparent rounded-t-lg" data-tab="teaching">Teaching</a></li>
-            </ul>
+        <nav class="nav">
+            <div class="nav-link active" data-tab="home">Home</div>
+            <div class="nav-link" data-tab="marc">MARC</div>
+            <div class="nav-link" data-tab="talks">Talks</div>
+            <div class="nav-link" data-tab="publications">Publications</div>
+            <div class="nav-link" data-tab="teaching">Teaching</div>
         </nav>
 
         <!-- Main Content -->
         <main>
-            <!-- Home Tab -->
-            <div id="home" class="tab-content active animate-fade-in">
-                <div class="bg-white p-8 rounded-lg shadow-md">
-                    <h2 class="text-2xl font-bold text-gray-900 mb-4">About Me</h2>
-                    <div class="space-y-4 text-gray-700 leading-relaxed">
-                        <p>
-                            I am a Professor in the Department of Politics and Philosophy at the University of Idaho. My work is situated at the intersections of cognitive science, philosophy, complex systems, and computational modeling. I am particularly interested in how scientists use diverse modeling techniques to understand the impacts of determinants of belief formation on complex biological and social phenomena. My most recent work focuses on modeling processes of reasoning and cognition, of both humans and AI systems (e.g. LLMs).
-                        </p>
-                        <p>
-                            My research explores questions about standards of evidence and their connections to opinion dynamics. I often use agent-based models and network theory as methodological tools, as well as survey studies. I am highly collaborative and interdisciplinary; my preference is to focus on questions that interest me rather than worry about disciplinary boundaries.  I co-lead the Modeling Core in the Institute for Modeling Collaboration and Innovation at University of Idaho. I'm also the co-founder of the AI Ethics and Inquiry Outfit.
-                        </p>
-                        <p>
-                            Please feel free to explore my research, publications, and teaching activities using the tabs above. You can contact me via email for inquiries or potential collaborations. For students interested in working with me, I also co-run BAFL (the Bert and Florian Lab) with my political science colleague Dr. Florian Justwan.
-                        </p>
+
+            <!-- HOME -->
+            <div id="home" class="tab-content active">
+                <div class="card">
+                    <h2>About</h2>
+                    <div class="section-block">
+                        <p>I am a Professor of Philosophy at the University of Idaho. My work is situated at the intersections of cognitive science, philosophy, complex systems, and computational modeling. I am particularly interested in how scientists use diverse modeling techniques to understand the impacts of determinants of belief formation on complex biological and social phenomena.</p>
+                    </div>
+                    <div class="section-block">
+                        <p>My research explores questions about standards of evidence and their connections to opinion dynamics. I often use agent-based models and network theory as methodological tools, as well as survey studies. I am highly collaborative and interdisciplinary; my preference is to focus on questions that interest me rather than worry about disciplinary boundaries.</p>
+                    </div>
+                    <div class="section-block">
+                        <p>More recently, my work has expanded into analogy and metaphor as windows into human cognition and AI limitations. The <a href="#" data-tab-link="marc">MARC project</a> (Metaphor Abstraction and Reasoning Corpus) uses community-created puzzles to probe what humans can do that AI systems cannot, and doubles as a tool for teaching AI literacy and ethics. I have also been investigating standards of evidence across political and scientific domains, and the philosophical and ethical dimensions of large language models and generative AI.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2>Research Areas</h2>
+                    <div class="section-block">
+                        <h3>Opinion Dynamics &amp; Social Epistemology</h3>
+                        <p>Modeling how beliefs form and spread through populations. Work on the preference for belief, echo chambers, reflective equilibrium, and how network structure shapes collective knowledge production.</p>
+                    </div>
+                    <div class="section-block">
+                        <h3>Disease-Behavior Models</h3>
+                        <p>Computational models linking behavioral responses to epidemic dynamics. Research on risk tolerance, vaccination attitudes, and how transient prophylaxis drives epidemic waves.</p>
+                    </div>
+                    <div class="section-block">
+                        <h3>Standards of Evidence</h3>
+                        <p>Investigating how individuals assess and gather evidence across scientific and political domains, including the effects of ideology and cognitive reflection on evidence-seeking behavior.</p>
+                    </div>
+                    <div class="section-block">
+                        <h3>Analogy, Metaphor &amp; AI Benchmarking</h3>
+                        <p>The <a href="#" data-tab-link="marc">MARC project</a> explores how metaphorical reasoning reveals fundamental gaps between human and artificial intelligence. This work connects philosophy of language, cognitive science, and AI evaluation.</p>
+                    </div>
+                    <div class="section-block">
+                        <h3>AI Literacy &amp; Ethics</h3>
+                        <p>Building frameworks and tools for understanding generative AI, including its limits, biases, and societal impacts. Developing pedagogical approaches that make AI literacy accessible to non-technical audiences.</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Research Tab -->
-            <div id="research" class="tab-content animate-fade-in">
-                <div class="bg-white p-8 rounded-lg shadow-md">
-                    <h2 class="text-2xl font-bold text-gray-900 mb-6">Research Interests</h2>
-                    <div class="space-y-6">
-                        <div>
-                            <h3 class="text-xl font-semibold text-blue-700">Philosophy and Interdisciplinary Collaborations</h3>
-                            <p class="mt-2 text-gray-700 leading-relaxed">
-                                To date my primary research area has been at the intersection of opinion dynamics, social epistemology, and behavioral epidemiology. I've worked on modeling risk tolerance and its effect on epidemic waves. In social epistemology I've worked on the dynamics of, e.g. reflective equilibrium, the preference for belief, and other determinants of belief formation. From a foundational perspective, I investigate how models and simulations contribute to scientific understanding, especially the epistemic status of models that are highly idealized or abstract.
-                            </p>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-semibold text-blue-700">Computational Modeling & Complex Systems</h3>
-                            <p class="mt-2 text-gray-700 leading-relaxed">
-                                I use computational methods, especially agent-based modeling, to explore complex systems. This work involves both building models to understand specific phenomena (like the spread of information in social networks) and analyzing the foundations of modeling itself. This approach allows for a "laboratory" for philosophical thought experiments.
-                            </p>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-semibold text-blue-700">Social Epistemology & Network Theory</h3>
-                            <p class="mt-2 text-gray-700 leading-relaxed">
-                                I apply network theory and modeling to questions in social epistemology. This includes studying how the structure of a scientific community affects its ability to produce knowledge, how consensus and diversity are balanced, and how misinformation can spread through social networks.
-                            </p>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-semibold text-blue-700">Recent Focus: AI Literacy</h3>
-                            <p class="mt-2 text-gray-700 leading-relaxed">
-                                In recent years, my presentations have focused heavily on the philosophical and ethical dimensions of artificial intelligence. This includes topics such as AI literacy, the role of large language models (LLMs) and chatbots in spreading or combating misinformation, and the inherent biases in generative AI systems. 
-                            </p>
-                        </div>
+            <!-- MARC -->
+            <div id="marc" class="tab-content">
+                <div class="card">
+                    <h2>MARC: Metaphor Abstraction and Reasoning Corpus</h2>
+                    <p>MARC extends Fran&ccedil;ois Chollet's Abstraction and Reasoning Corpus (ARC) by pairing visual grid-based puzzles with metaphorical natural language hints. The core insight: humans can leverage metaphors to solve novel puzzles with remarkable ease, while AI systems struggle&mdash;exposing a fundamental gap in machine intelligence around fluid reasoning, perspective-shifting, and genuine understanding.</p>
+
+                    <div class="marc-highlight">
+                        <h3>What MARC enables</h3>
+                        <p style="margin-top: 0.5rem;"><strong style="color: var(--text-primary);">Research.</strong> MARC provides a platform for studying how metaphorical reasoning works in humans and where it breaks down in AI. Each puzzle probes intentionality, agency, and the capacity for analogical thinking&mdash;capacities that remain beyond current AI systems.</p>
+                        <p style="margin-top: 0.75rem;"><strong style="color: var(--text-primary);">AI Literacy &amp; Ethics.</strong> Because anyone can create a MARC puzzle, it democratizes AI benchmarking. Students and non-specialists can directly engage with the question of what makes human intelligence distinctive, without needing technical training. The project serves as a teaching tool for critical thinking about AI capabilities and limitations.</p>
+                        <p style="margin-top: 0.75rem;"><strong style="color: var(--text-primary);">Community.</strong> MARC puzzles are community-created and community-driven. Campus competitions and open submission foster broad participation across disciplines.</p>
+                    </div>
+
+                    <div class="marc-links">
+                        <a href="https://marc.nkn.uidaho.edu" target="_blank" class="marc-link">MARC Website</a>
+                        <a href="https://bertbaum.substack.com/p/easy-for-humans-hard-for-ai-the-metaphor" target="_blank" class="marc-link">Substack: Introducing MARC</a>
+                        <a href="https://bertbaum.substack.com/p/let-a-thousand-benchmarks-bloom-that" target="_blank" class="marc-link">Substack: A Thousand Benchmarks</a>
+                        <a href="https://youtu.be/vDlz7BPs0hI" target="_blank" class="marc-link">POP Talk (Video)</a>
+                        <a href="https://github.com/bertybaums/MetARC-1" target="_blank" class="marc-link">Met-ARC Report</a>
+                        <a href="https://github.com/bertybaums/MetARC-1/blob/main/On_Measures_of_Intelligence_We_Live_By___ARC_prize_paper.pdf" target="_blank" class="marc-link">Paper: Measures of Intelligence We Live By</a>
                     </div>
                 </div>
             </div>
 
-            <!-- Publications Tab -->
-            <div id="publications" class="tab-content animate-fade-in">
-                <div class="bg-white p-8 rounded-lg shadow-md">
-                    <h2 class="text-2xl font-bold text-gray-900 mb-6">Selected Publications</h2>
-                    <p class="mb-8 text-gray-600">This is a selection of my refereed publications. For a complete list, please see my <a href="#" class="text-blue-600 hover:underline">CV</a> or <a href="#" class="text-blue-600 hover:underline">Google Scholar profile</a>.</p>
-                    
-                    <div class="space-y-8">
-                        <div class="publication-item"><p class="font-semibold text-lg text-gray-800">Heterogeneous risk tolerance, in-groups and epidemic waves.</p><p class="text-gray-600">Tovissode, C., Baumgaertner, B. (2024). <em>Frontiers in Applied Mathematics and Statistics</em>.</p><a href="https://doi.org/10.3389/fams.2024.1360001" target="_blank" class="text-blue-600 hover:underline mt-2 inline-block">View Publication</a></div>
-                        <div class="publication-item"><p class="font-semibold text-lg text-gray-800">Search is a Hammer, Generative Chat is a Loom; Beware the Technological Attribution Error.</p><p class="text-gray-600">Baumgaertner, B., duBois, Z. (2024). In: <em>Social Computing and Social Media. HCII 2024</em>.</p><a href="https://doi.org/10.1007/978-3-031-61281-7_22" target="_blank" class="text-blue-600 hover:underline mt-2 inline-block">View Publication</a></div>
-                        <div class="publication-item"><p class="font-semibold text-lg text-gray-800">Precedent and rest stop convergence in reflective equilibrium.</p><p class="text-gray-600">Baumgaertner, B., Lassiter, C. (2024). <em>Synthese</em>.</p><a href="https://doi.org/10.1007/s11229-024-04499-x" target="_blank" class="text-blue-600 hover:underline mt-2 inline-block">View Publication</a></div>
-                        <div class="publication-item"><p class="font-semibold text-lg text-gray-800">Convergence and Shared Reflective Equilibrium.</p><p class="text-gray-600">Baumgaertner, B., & Lassiter, C. (2023). <em>Ergo</em>.</p><a href="https://doi.org/10.3998/ergo.4654" target="_blank" class="text-blue-600 hover:underline mt-2 inline-block">View Publication</a></div>
-                        <div class="publication-item"><p class="font-semibold text-lg text-gray-800">The logical structure of experiments lays the foundation for a theory of reproducibility.</p><p class="text-gray-600">Buzbas EO, Devezer B, Baumgaertner B. (2023). <em>Royal Society Open Science</em>.</p><a href="https://doi.org/10.1098/rsos.221042" target="_blank" class="text-blue-600 hover:underline mt-2 inline-block">View Publication</a></div>
-                        <div class="publication-item"><p class="font-semibold text-lg text-gray-800">The preference for belief, issue polarization, and echo chambers.</p><p class="text-gray-600">Baumgaertner, B., Justwan, F. (2022). <em>Synthese</em>.</p><a href="https://doi.org/10.1007/s11229-022-03880-y" target="_blank" class="text-blue-600 hover:underline mt-2 inline-block">View Publication</a></div>
-                        <div class="publication-item"><p class="font-semibold text-lg text-gray-800">Meddling in the 2016 Elections and Satisfaction with Democracy in the US.</p><p class="text-gray-600">Justwan, F., Baumgaertner, B., Curtright, M.* (2022). <em>Political Studies</em>.</p><a href="https://doi.org/10.1177/00323217221126300" target="_blank" class="text-blue-600 hover:underline mt-2 inline-block">View Publication</a></div>
-                        <div class="publication-item"><p class="font-semibold text-lg text-gray-800">Transient prophylaxis and multiple epidemic waves.</p><p class="text-gray-600">Tyson, R. C., Marshall, N. M.*, Baumgaertner, B. (2022). <em>AIMS Mathematics</em>.</p><a href="https://doi.org/10.3934/math.2022311" target="_blank" class="text-blue-600 hover:underline mt-2 inline-block">View Publication</a></div>
-                        <div class="publication-item"><p class="font-semibold text-lg text-gray-800">The Effects of COVID-19 on Political Efficacy.</p><p class="text-gray-600">McBrayer, M., Baumgaertner, B., Justwan, F. (2022). <em>American Politics Research</em>.</p><a href="https://doi.org/10.1177/1532673X211041322" target="_blank" class="text-blue-600 hover:underline mt-2 inline-block">View Publication</a></div>
-                        <div class="publication-item"><p class="font-semibold text-lg text-gray-800">Risk of disease and willingness to vaccinate in the United States: a population-based survey.</p><p class="text-gray-600">Baumgaertner, B., Ridenhour, B. J., Justwan, F., Carlisle, J. E., Miller, C. R. (2020). <em>PLOS Medicine</em>.</p><a href="https://doi.org/10.1371/journal.pmed.1003354" target="_blank" class="text-blue-600 hover:underline mt-2 inline-block">View Publication</a></div>
-                        <div class="publication-item"><p class="font-semibold text-lg text-gray-800">Voter models and external influence.</p><p class="text-gray-600">Majmudar, J.R., Krone, S.M., Baumgaertner, B.O., Tyson, R.C. (2020). <em>The Journal of Mathematical Sociology</em>.</p><a href="https://doi.org/10.1080/0022250X.2019.1625349" target="_blank" class="text-blue-600 hover:underline mt-2 inline-block">View Publication</a></div>
-                        <div class="publication-item"><p class="font-semibold text-lg text-gray-800">The timing and nature of behavioural responses affect the course of an epidemic.</p><p class="text-gray-600">Tyson, R., Baumgaertner, B., Hamilton, S.*, Lo, A., Krone, S. (2020). <em>Mathematical Bulletin of Biology</em>.</p><a href="https://doi.org/10.1007/s11538-019-00684-z" target="_blank" class="text-blue-600 hover:underline mt-2 inline-block">View Publication</a></div>
-                        <div class="publication-item"><p class="font-semibold text-lg text-gray-800">The effect of trust and proximity on vaccine propensity.</p><p class="text-gray-600">Justwan, F., Baumgaertner, B., Carlisle, J. E., Carson, E.*, Kizer, J.* (2019). <em>PLoS ONE</em>.</p><a href="https://doi.org/10.1371/journal.pone.0220658" target="_blank" class="text-blue-600 hover:underline mt-2 inline-block">View Publication</a></div>
-                        <div class="publication-item"><p class="font-semibold text-lg text-gray-800">Scientific discovery in a model-centric framework: Reproducibility, innovation, and epistemic diversity.</p><p class="text-gray-600">Devezer, B., Nardin, LG., Baumgaertner, B., Buzbas, E. (2019). <em>PLoS ONE</em>.</p><a href="https://doi.org/10.1371/journal.pone.0216125" target="_blank" class="text-blue-600 hover:underline mt-2 inline-block">View Publication</a></div>
-                        <div class="publication-item"><p class="font-semibold text-lg text-gray-800">Spatial Opinion Dynamics and the Effects of Two Types of Mixing.</p><p class="text-gray-600">Baumgaertner, B., Fetros, P.*, Tyson, R., Krone, S. (2018). <em>Physical Review E</em>.</p><a href="https://doi.org/10.1103/PhysRevE.98.022310" target="_blank" class="text-blue-600 hover:underline mt-2 inline-block">View Publication</a></div>
+            <!-- TALKS -->
+            <div id="talks" class="tab-content">
+                <div class="card">
+                    <h2>Selected Presentations</h2>
+                    <p style="margin-bottom: 1rem; font-size: 0.85rem; color: var(--text-muted);">Most recent first. * Invited &nbsp; ** Peer-reviewed</p>
+
+                    <div class="talk-item">
+                        <div class="talk-title">"Metaphor in the Machine: From Source to Target Domains without Dogmas about Conceptual Structure"<span class="talk-badge badge-invited">Invited</span></div>
+                        <div class="talk-meta">Pacific American Philosophy Association, April 2026</div>
+                    </div>
+
+                    <div class="talk-item">
+                        <div class="talk-title">"The Dark Room and the Ruthless Curiosity it Demands: Graduate Research in the Age of Agentic AI"<span class="talk-badge badge-invited">Invited</span></div>
+                        <div class="talk-meta">ENVS 5010 Seminar Series, College of Natural Resources, University of Idaho, March 23, 2026</div>
+                    </div>
+
+                    <div class="talk-item">
+                        <div class="talk-title">"A Formal Framework for How Inferential Commitments Create Deep Disagreements"</div>
+                        <div class="talk-meta">Computational Social Philosophy Seminars, March 23, 2026</div>
+                    </div>
+
+                    <div class="talk-item">
+                        <div class="talk-title">"Metaphors We Intend With: Teaching AI Alignment Through Puzzles"<span class="talk-badge badge-peer">Peer-reviewed</span></div>
+                        <div class="talk-meta">AI and Data Ethics: Philosophy and Pedagogy, University of Southern California, March 6&ndash;7, 2026</div>
+                    </div>
+
+                    <div class="talk-item">
+                        <div class="talk-title">"Bots as Foils: Real Students Learn by Teaching AI Students"<span class="talk-badge badge-peer">Peer-reviewed</span></div>
+                        <div class="talk-meta">University of Idaho Student Success Symposium: Ignite and Elevate, February 27, 2026</div>
+                    </div>
+
+                    <div class="talk-item">
+                        <div class="talk-title">"How Will Our Ability to Access PhD++ Expertise at $20 a Month Impact 'Modeling Collaboration and Innovation'?"</div>
+                        <div class="talk-meta">IMCI Brown Bag Lunch Series, February 23, 2026</div>
+                    </div>
+
+                    <div class="talk-item">
+                        <div class="talk-title">"The Grasshopper's Utopia: AI, Games, and the Future You're Playing Into"<span class="talk-badge badge-invited">Invited</span></div>
+                        <div class="talk-meta">Vandal Gaming Convention, University of Idaho, February 28, 2026</div>
+                    </div>
+
+                    <div class="talk-item">
+                        <div class="talk-title">"MARC Your Human Intelligence"<span class="talk-badge badge-invited">Invited</span></div>
+                        <div class="talk-meta">University of Idaho POP Talks, October 2025 &mdash; <a href="https://youtu.be/vDlz7BPs0hI" target="_blank">Watch video</a></div>
+                    </div>
+
+                    <div class="talk-item">
+                        <div class="talk-title">"EASY for Humans, HARD for AI: Metaphor Abstraction and Reasoning Corpus"<span class="talk-badge badge-invited">Invited</span></div>
+                        <div class="talk-meta">Malcolm Renfrew Interdisciplinary Colloquium, University of Idaho, September 2, 2025</div>
+                    </div>
+
+                    <div class="talk-item">
+                        <div class="talk-title">"Chatbots and Misinformation: The Semantic Turn, for Better and Worse"<span class="talk-badge badge-invited">Invited</span></div>
+                        <div class="talk-meta">IMCI Brown Bag Lunch Series, University of Idaho, January 13, 2025</div>
+                    </div>
+
+                    <div class="talk-item">
+                        <div class="talk-title">"AI Literacy &mdash; What Is and Isn't Working"<span class="talk-badge badge-invited">Invited</span></div>
+                        <div class="talk-meta">Institute for Interdisciplinary Data Sciences &mdash; AI Literacy Series, University of Idaho, November 7, 2024</div>
+                    </div>
+
+                    <div class="talk-item">
+                        <div class="talk-title">"AI Literacy for Everyone Who Learns and Inquires"<span class="talk-badge badge-invited">Invited</span></div>
+                        <div class="talk-meta">The Renfrew Colloquium (joint with Casey Johnson), University of Idaho, October 22, 2024</div>
+                    </div>
+
+                    <div class="talk-item">
+                        <div class="talk-title">"Standards of Evidence: Disease Dynamics and Human Evidence Gathering"</div>
+                        <div class="talk-meta">University of Idaho, October 1, 2024 (non-presenting co-author)</div>
+                    </div>
+
+                    <div class="talk-item">
+                        <div class="talk-title">"LLMs, Bias and Ethical Dilemmas"<span class="talk-badge badge-invited">Invited</span></div>
+                        <div class="talk-meta">Joint lecture with Casey Johnson in Boyu Zhang's graduate NLP course, April 29, 2024</div>
+                    </div>
+
+                    <div class="talk-item">
+                        <div class="talk-title">"AI Literacy &mdash; A Discussion Spark in Using AI in Critical Thinking"<span class="talk-badge badge-invited">Invited</span></div>
+                        <div class="talk-meta">Generative AI in Higher Education in Idaho, April 19, 2024</div>
+                    </div>
+
+                    <div class="talk-item">
+                        <div class="talk-title">"Humanities Takeover: Values and the Work Towards AI Literacy"<span class="talk-badge badge-invited">Invited</span></div>
+                        <div class="talk-meta">Institute for Interdisciplinary Data Sciences Seminar Series, April 18, 2024</div>
                     </div>
                 </div>
             </div>
 
-            <!-- Teaching Tab -->
-            <div id="teaching" class="tab-content animate-fade-in">
-                <div class="bg-white p-8 rounded-lg shadow-md">
-                    <h2 class="text-2xl font-bold text-gray-900 mb-6">Teaching</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        
-                        <!-- Undergraduate Courses -->
+            <!-- PUBLICATIONS -->
+            <div id="publications" class="tab-content">
+                <div class="card">
+                    <h2>Selected Publications</h2>
+                    <p style="margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--text-muted);">For a complete list, see my <a href="BaumgaertnerCV.pdf">CV</a> or <a href="https://scholar.google.com/citations?user=57-9utcAAAAJ&hl=en" target="_blank">Google Scholar</a>.</p>
+
+                    <div class="pub-item">
+                        <div class="pub-title">Evaluating Evidentiary Standards in the Realm of Citizen Policy Evaluation</div>
+                        <div class="pub-meta">Justwan, F., Baumgaertner, B., McBrayer, M., Bindley, J.*, Benitez, A.*, Haile, K.*, Kludt-Painter, B.* (2026). <em>Social Science Quarterly</em>.</div>
+                        <a href="https://doi.org/10.1111/ssqu.70128" target="_blank" class="pub-link">View publication</a>
+                    </div>
+
+                    <div class="pub-item">
+                        <div class="pub-title">The Causes and Consequences of Public Misperceptions about the Origins of the Russo-Ukrainian War</div>
+                        <div class="pub-meta">Justwan, F., Berejikian, J.D., Baumgaertner, B. (2026). <em>International Political Science Review</em>.</div>
+                        <a href="https://doi.org/10.1177/01925121251403578" target="_blank" class="pub-link">View publication</a>
+                    </div>
+
+                    <div class="pub-item">
+                        <div class="pub-title">The Effects of Ideology and Cognitive Reflection on Evidence Gathering Behavior in the Political Domain</div>
+                        <div class="pub-meta">Justwan, F., Baumgaertner, B. (2025). <em>PLoS ONE</em> 20(12): e0338088.</div>
+                        <a href="https://doi.org/10.1371/journal.pone.0338088" target="_blank" class="pub-link">View publication</a>
+                    </div>
+
+                    <div class="pub-item">
+                        <div class="pub-title">Heterogeneous Risk Tolerance, In-groups and Epidemic Waves</div>
+                        <div class="pub-meta">Tovissode, C., Baumgaertner, B. (2024). <em>Frontiers in Applied Mathematics and Statistics</em>.</div>
+                        <a href="https://doi.org/10.3389/fams.2024.1360001" target="_blank" class="pub-link">View publication</a>
+                    </div>
+
+                    <div class="pub-item">
+                        <div class="pub-title">Search is a Hammer, Generative Chat is a Loom; Beware the Technological Attribution Error</div>
+                        <div class="pub-meta">Baumgaertner, B., duBois, Z. (2024). In: <em>Social Computing and Social Media. HCII 2024</em>.</div>
+                        <a href="https://doi.org/10.1007/978-3-031-61281-7_22" target="_blank" class="pub-link">View publication</a>
+                    </div>
+
+                    <div class="pub-item">
+                        <div class="pub-title">Precedent and Rest Stop Convergence in Reflective Equilibrium</div>
+                        <div class="pub-meta">Baumgaertner, B., Lassiter, C. (2024). <em>Synthese</em>.</div>
+                        <a href="https://doi.org/10.1007/s11229-024-04499-x" target="_blank" class="pub-link">View publication</a>
+                    </div>
+
+                    <div class="pub-item">
+                        <div class="pub-title">Convergence and Shared Reflective Equilibrium</div>
+                        <div class="pub-meta">Baumgaertner, B., &amp; Lassiter, C. (2023). <em>Ergo</em>.</div>
+                        <a href="https://doi.org/10.3998/ergo.4654" target="_blank" class="pub-link">View publication</a>
+                    </div>
+
+                    <div class="pub-item">
+                        <div class="pub-title">The Logical Structure of Experiments Lays the Foundation for a Theory of Reproducibility</div>
+                        <div class="pub-meta">Buzbas, E.O., Devezer, B., Baumgaertner, B. (2023). <em>Royal Society Open Science</em>.</div>
+                        <a href="https://doi.org/10.1098/rsos.221042" target="_blank" class="pub-link">View publication</a>
+                    </div>
+
+                    <div class="pub-item">
+                        <div class="pub-title">The Preference for Belief, Issue Polarization, and Echo Chambers</div>
+                        <div class="pub-meta">Baumgaertner, B., Justwan, F. (2022). <em>Synthese</em>.</div>
+                        <a href="https://doi.org/10.1007/s11229-022-03880-y" target="_blank" class="pub-link">View publication</a>
+                    </div>
+
+                    <div class="pub-item">
+                        <div class="pub-title">Meddling in the 2016 Elections and Satisfaction with Democracy in the US</div>
+                        <div class="pub-meta">Justwan, F., Baumgaertner, B., Curtright, M.* (2022). <em>Political Studies</em>.</div>
+                        <a href="https://doi.org/10.1177/00323217221126300" target="_blank" class="pub-link">View publication</a>
+                    </div>
+
+                    <div class="pub-item">
+                        <div class="pub-title">Transient Prophylaxis and Multiple Epidemic Waves</div>
+                        <div class="pub-meta">Tyson, R.C., Marshall, N.M.*, Baumgaertner, B. (2022). <em>AIMS Mathematics</em>.</div>
+                        <a href="https://doi.org/10.3934/math.2022311" target="_blank" class="pub-link">View publication</a>
+                    </div>
+
+                    <div class="pub-item">
+                        <div class="pub-title">The Effects of COVID-19 on Political Efficacy</div>
+                        <div class="pub-meta">McBrayer, M., Baumgaertner, B., Justwan, F. (2022). <em>American Politics Research</em>.</div>
+                        <a href="https://doi.org/10.1177/1532673X211041322" target="_blank" class="pub-link">View publication</a>
+                    </div>
+
+                    <div class="pub-item">
+                        <div class="pub-title">Risk of Disease and Willingness to Vaccinate in the United States: A Population-Based Survey</div>
+                        <div class="pub-meta">Baumgaertner, B., Ridenhour, B.J., Justwan, F., Carlisle, J.E., Miller, C.R. (2020). <em>PLOS Medicine</em>.</div>
+                        <a href="https://doi.org/10.1371/journal.pmed.1003354" target="_blank" class="pub-link">View publication</a>
+                    </div>
+
+                    <div class="pub-item">
+                        <div class="pub-title">Voter Models and External Influence</div>
+                        <div class="pub-meta">Majmudar, J.R., Krone, S.M., Baumgaertner, B.O., Tyson, R.C. (2020). <em>The Journal of Mathematical Sociology</em>.</div>
+                        <a href="https://doi.org/10.1080/0022250X.2019.1625349" target="_blank" class="pub-link">View publication</a>
+                    </div>
+
+                    <div class="pub-item">
+                        <div class="pub-title">The Timing and Nature of Behavioural Responses Affect the Course of an Epidemic</div>
+                        <div class="pub-meta">Tyson, R., Baumgaertner, B., Hamilton, S.*, Lo, A., Krone, S. (2020). <em>Bulletin of Mathematical Biology</em>.</div>
+                        <a href="https://doi.org/10.1007/s11538-019-00684-z" target="_blank" class="pub-link">View publication</a>
+                    </div>
+
+                    <div class="pub-item">
+                        <div class="pub-title">The Effect of Trust and Proximity on Vaccine Propensity</div>
+                        <div class="pub-meta">Justwan, F., Baumgaertner, B., Carlisle, J.E., Carson, E.*, Kizer, J.* (2019). <em>PLoS ONE</em>.</div>
+                        <a href="https://doi.org/10.1371/journal.pone.0220658" target="_blank" class="pub-link">View publication</a>
+                    </div>
+
+                    <div class="pub-item">
+                        <div class="pub-title">Scientific Discovery in a Model-Centric Framework: Reproducibility, Innovation, and Epistemic Diversity</div>
+                        <div class="pub-meta">Devezer, B., Nardin, L.G., Baumgaertner, B., Buzbas, E. (2019). <em>PLoS ONE</em>.</div>
+                        <a href="https://doi.org/10.1371/journal.pone.0216125" target="_blank" class="pub-link">View publication</a>
+                    </div>
+
+                    <div class="pub-item">
+                        <div class="pub-title">Spatial Opinion Dynamics and the Effects of Two Types of Mixing</div>
+                        <div class="pub-meta">Baumgaertner, B., Fetros, P.*, Tyson, R., Krone, S. (2018). <em>Physical Review E</em>.</div>
+                        <a href="https://doi.org/10.1103/PhysRevE.98.022310" target="_blank" class="pub-link">View publication</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TEACHING -->
+            <div id="teaching" class="tab-content">
+                <div class="card">
+                    <h2>Teaching</h2>
+                    <div class="teaching-grid">
                         <div>
-                            <h3 class="text-xl font-semibold text-blue-700 border-b pb-2 mb-4">Regular Undergraduate Courses</h3>
-                            <ul class="space-y-3 text-gray-700 list-disc list-inside">
+                            <h3>Regular Undergraduate Courses</h3>
+                            <ul class="teaching-list">
                                 <li>PHIL 2010: Critical Thinking</li>
                                 <li>PHIL 2020: Introduction to Symbolic Logic</li>
-                                <li>Rotating between Decision Theory, Phil Language, Theory of Knowledge, and Metaphysics</li>
+                                <li>Rotating: Decision Theory, Phil Language, Theory of Knowledge, Metaphysics</li>
                             </ul>
                         </div>
-
-                        <!-- Graduate Courses -->
                         <div>
-                            <h3 class="text-xl font-semibold text-blue-700 border-b pb-2 mb-4">Seminars and Special Topics</h3>
-                            <ul class="space-y-3 text-gray-700 list-disc list-inside">
-                                <li>PHIL 361: Professional Ethics - Generative AI</li>
+                            <h3>Seminars &amp; Special Topics</h3>
+                            <ul class="teaching-list">
+                                <li>PHIL 361: Professional Ethics &mdash; Generative AI</li>
                                 <li>PHIL 4040: Rational Choice and Strategic Interactions</li>
                             </ul>
                         </div>
                     </div>
-                     <div class="mt-8 bg-blue-50 border-l-4 border-blue-400 p-4 rounded-r-lg">
-                        <div class="flex">
-                            <div class="flex-shrink-0">
-                                <svg class="h-5 w-5 text-blue-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
-                                </svg>
-                            </div>
-                            <div class="ml-3">
-                                <p class="text-sm text-blue-700">
-                                    Course materials and syllabi are available for current students on the university's learning management system. Prospective students interested in course content can contact me directly via email.
-                                </p>
-                            </div>
-                        </div>
+                    <div class="marc-highlight" style="margin-top: 1.5rem;">
+                        <p style="font-size: 0.9rem;">Course materials and syllabi are available for current students on the university's learning management system. Prospective students interested in course content can contact me directly via <a href="mailto:bbaum@uidaho.edu">email</a>.</p>
                     </div>
                 </div>
             </div>
@@ -191,36 +687,45 @@
         </main>
 
         <!-- Footer -->
-        <footer class="text-center mt-12 text-gray-500 text-sm">
-            <p>&copy; <span id="current-year"></span> Bert Baumgaertner. All rights reserved.</p>
-            <p class="mt-1">Department of Politics and Philosophy, University of Idaho.</p>
+        <footer class="footer">
+            <p>&copy; <span id="current-year"></span> Bert Baumgaertner. Department of Politics and Philosophy, University of Idaho.</p>
         </footer>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const navLinks = document.querySelectorAll('.nav-link');
             const tabContents = document.querySelectorAll('.tab-content');
 
-            navLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    // Deactivate all links and tabs
-                    navLinks.forEach(l => l.classList.remove('active'));
-                    tabContents.forEach(t => t.classList.remove('active'));
+            function switchTab(tabId) {
+                navLinks.forEach(l => l.classList.remove('active'));
+                tabContents.forEach(t => t.classList.remove('active'));
+                document.querySelector('[data-tab="' + tabId + '"]').classList.add('active');
+                document.getElementById(tabId).classList.add('active');
+                history.replaceState(null, '', '#' + tabId);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
 
-                    // Activate clicked link and corresponding tab
-                    const tabId = link.getAttribute('data-tab');
-                    const activeTab = document.getElementById(tabId);
-                    
-                    link.classList.add('active');
-                    activeTab.classList.add('active');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => switchTab(link.getAttribute('data-tab')));
+            });
+
+            // In-page tab links (e.g. "MARC project" in body text)
+            document.querySelectorAll('[data-tab-link]').forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    switchTab(this.getAttribute('data-tab-link'));
                 });
             });
 
-            // Set current year in footer
+            // Deep-link support
+            if (window.location.hash) {
+                const tab = window.location.hash.substring(1);
+                if (document.getElementById(tab)) switchTab(tab);
+            }
+
             document.getElementById('current-year').textContent = new Date().getFullYear();
         });
     </script>
 </body>
 </html>
-
