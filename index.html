@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bert Baumgaertner | Professor of Philosophy</title>
-    <meta name="description" content="Bert Baumgaertner — Professor of Philosophy at the University of Idaho. Research in cognitive science, computational philosophy, social epistemology, AI ethics, and the MARC project.">
+    <meta name="description" content="Bert Baumgaertner — Professor of Philosophy at the University of Idaho. Research in cognitive science, computational philosophy, social epistemology, AI ethics, and the MARC and NARC projects.">
     <meta property="og:title" content="Bert Baumgaertner | Professor of Philosophy">
     <meta property="og:description" content="Professor of Philosophy at the University of Idaho. Research in cognitive science, computational philosophy, social epistemology, and AI ethics.">
     <meta property="og:type" content="website">
@@ -381,6 +381,7 @@
         <nav class="nav">
             <div class="nav-link active" data-tab="home">Home</div>
             <div class="nav-link" data-tab="marc">MARC</div>
+            <div class="nav-link" data-tab="narc">NARC</div>
             <div class="nav-link" data-tab="talks">Talks</div>
             <div class="nav-link" data-tab="publications">Publications</div>
             <div class="nav-link" data-tab="teaching">Teaching</div>
@@ -400,7 +401,7 @@
                         <p>My research explores questions about standards of evidence and their connections to opinion dynamics. I often use agent-based models and network theory as methodological tools, as well as survey studies. I am highly collaborative and interdisciplinary; my preference is to focus on questions that interest me rather than worry about disciplinary boundaries.</p>
                     </div>
                     <div class="section-block">
-                        <p>More recently, my work has expanded into analogy and metaphor as windows into human cognition and AI limitations. The <a href="#" data-tab-link="marc">MARC project</a> (Metaphor Abstraction and Reasoning Corpus) uses community-created puzzles to probe what humans can do that AI systems cannot, and doubles as a tool for teaching AI literacy and ethics. I have also been investigating standards of evidence across political and scientific domains, and the philosophical and ethical dimensions of large language models and generative AI.</p>
+                        <p>More recently, my work has expanded into analogy, metaphor, and narrative as windows into human cognition and AI limitations. The <a href="#" data-tab-link="marc">MARC project</a> (Metaphor Abstraction and Reasoning Corpus) uses community-created puzzles to probe what humans can do that AI systems cannot, and doubles as a tool for teaching AI literacy and ethics. Its sibling, <a href="#" data-tab-link="narc">NARC</a> (Narrative Augmented Reasoning Challenges), asks how stories transform visual reasoning &mdash; whether for humans or for machines. I have also been investigating standards of evidence across political and scientific domains, and the philosophical and ethical dimensions of large language models and generative AI.</p>
                     </div>
                 </div>
 
@@ -419,8 +420,8 @@
                         <p>Investigating how individuals assess and gather evidence across scientific and political domains, including the effects of ideology and cognitive reflection on evidence-seeking behavior.</p>
                     </div>
                     <div class="section-block">
-                        <h3>Analogy, Metaphor &amp; AI Benchmarking</h3>
-                        <p>The <a href="#" data-tab-link="marc">MARC project</a> explores how metaphorical reasoning reveals fundamental gaps between human and artificial intelligence. This work connects philosophy of language, cognitive science, and AI evaluation.</p>
+                        <h3>Analogy, Metaphor, Narrative &amp; AI Benchmarking</h3>
+                        <p>The <a href="#" data-tab-link="marc">MARC project</a> explores how metaphorical reasoning reveals fundamental gaps between human and artificial intelligence. Its sibling, <a href="#" data-tab-link="narc">NARC</a>, investigates how narrative reorganizes visual reasoning by pairing abstract grid sequences with short stories that disambiguate them. Together they connect philosophy of language, cognitive science, narratology, and AI evaluation.</p>
                     </div>
                     <div class="section-block">
                         <h3>AI Literacy &amp; Ethics</h3>
@@ -453,11 +454,42 @@
                 </div>
             </div>
 
+            <!-- NARC -->
+            <div id="narc" class="tab-content">
+                <div class="card">
+                    <h2>NARC: Narrative Augmented Reasoning Challenges</h2>
+                    <p>NARC is a sibling project to <a href="#" data-tab-link="marc">MARC</a>. Where MARC pairs visual puzzles with metaphorical hints, NARC pairs sequences of colored grids with short narratives. One or more grids in the sequence are hidden, and the goal is to reconstruct them pixel-perfectly. The grids alone are ambiguous &mdash; multiple completions look plausible. The narrative alone underdetermines the answer too. Only together do they pick out a unique solution.</p>
+                    <p style="margin-top: 0.75rem;">I call this the <strong style="color: var(--text-primary);">NARC property</strong>: neither modality suffices, but their combination does. It offers a tractable setting for asking how narrative reorganizes perception and inference &mdash; and where humans and AI systems diverge in their ability to use a story to see what would otherwise be invisible.</p>
+
+                    <div class="marc-highlight">
+                        <h3>What NARC enables</h3>
+                        <p style="margin-top: 0.5rem;"><strong style="color: var(--text-primary);">Research.</strong> NARC is designed to isolate the contribution of narrative to visual reasoning. The corpus draws on Erin James's Story Prism &mdash; a decomposition of narratives into <em>Teller &amp; Told</em>, <em>World</em>, <em>Events</em>, <em>Actors</em>, and <em>How It Feels</em> &mdash; so puzzles can be tagged and varied along specific narrative facets. This makes it possible to ask which facets carry the disambiguating work, and to compare humans and AI systems facet by facet.</p>
+                        <p style="margin-top: 0.75rem;"><strong style="color: var(--text-primary);">Connections.</strong> NARC sits at the intersection of <a href="https://arcprize.org/" target="_blank">ARC-AGI</a>, econarratology, and AI evaluation. Puzzles span literary classics (Hemingway, Kafka, Shelley), scientific concepts (natural selection, entropy, plate tectonics), and philosophical thought experiments (the trolley problem, Plato's cave). Each is rated for both human and AI difficulty.</p>
+                        <p style="margin-top: 0.75rem;"><strong style="color: var(--text-primary);">Corpus.</strong> 134 active puzzles with 484 narrative variants across 72 unique grid sizes, 3&ndash;8 grids per puzzle. The corpus is browseable, solvable, and inspectable online.</p>
+                    </div>
+
+                    <div class="marc-links">
+                        <a href="https://narc.insight.uidaho.edu" target="_blank" class="marc-link">NARC Website</a>
+                        <a href="https://github.com/bertybaums/narc" target="_blank" class="marc-link">GitHub Repository</a>
+                    </div>
+                </div>
+            </div>
+
             <!-- TALKS -->
             <div id="talks" class="tab-content">
                 <div class="card">
                     <h2>Selected Presentations</h2>
                     <p style="margin-bottom: 1rem; font-size: 0.85rem; color: var(--text-muted);">Most recent first. * Invited &nbsp; ** Peer-reviewed</p>
+
+                    <div class="talk-item">
+                        <div class="talk-title">"Was the Gettier Problem Inevitable? Language Models as Instruments for Complementary Inquiry"<span class="talk-badge badge-invited">Invited</span></div>
+                        <div class="talk-meta">Boise State University, Department of Philosophy, April 25, 2026</div>
+                    </div>
+
+                    <div class="talk-item">
+                        <div class="talk-title">"New Trails, Old Coastline: Humanities Takeover in the Era of Agentic AI"<span class="talk-badge badge-invited">Invited</span></div>
+                        <div class="talk-meta">Boise State University, Department of Philosophy (general audience), April 24, 2026</div>
+                    </div>
 
                     <div class="talk-item">
                         <div class="talk-title">"Metaphor in the Machine: From Source to Target Domains without Dogmas about Conceptual Structure"<span class="talk-badge badge-invited">Invited</span></div>
