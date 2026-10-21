@@ -249,6 +249,39 @@
             color: #7ab8f5;
         }
 
+        .badge-upcoming {
+            background: rgba(120, 200, 140, 0.12);
+            color: #8fd19e;
+        }
+
+        /* Recent news */
+        .news-item {
+            display: flex;
+            gap: 1.25rem;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.92rem;
+            color: var(--text-secondary);
+        }
+
+        .news-item:last-child { border-bottom: none; }
+
+        .news-date {
+            flex-shrink: 0;
+            width: 5.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            padding-top: 0.1rem;
+        }
+
+        .card h3.list-heading {
+            margin-top: 2rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .card h3.list-heading:first-of-type { margin-top: 0; }
+
         /* MARC highlight */
         .marc-highlight {
             background: var(--orange-dim);
@@ -351,6 +384,13 @@
             .card {
                 padding: 1.25rem;
             }
+
+            .news-item {
+                flex-direction: column;
+                gap: 0.1rem;
+            }
+
+            .news-date { width: auto; }
         }
     </style>
 </head>
@@ -372,6 +412,8 @@
                     <a href="https://scholar.google.com/citations?user=57-9utcAAAAJ&hl=en" target="_blank">Google Scholar</a>
                     <a href="https://orcid.org/0000-0001-8803-4771" target="_blank">ORCID</a>
                     <a href="BaumgaertnerCV.pdf">CV (PDF)</a>
+                    <a href="https://github.com/bertybaums" target="_blank">GitHub</a>
+                    <a href="https://huggingface.co/bertybaums" target="_blank">Hugging Face</a>
                     <a href="https://bertbaum.substack.com/" target="_blank">Substack</a>
                 </div>
             </div>
@@ -384,6 +426,7 @@
             <div class="nav-link" data-tab="narc">NARC</div>
             <div class="nav-link" data-tab="talks">Talks</div>
             <div class="nav-link" data-tab="publications">Publications</div>
+            <div class="nav-link" data-tab="data">Data &amp; Code</div>
             <div class="nav-link" data-tab="teaching">Teaching</div>
         </nav>
 
@@ -402,6 +445,34 @@
                     </div>
                     <div class="section-block">
                         <p>More recently, my work has expanded into analogy, metaphor, and narrative as windows into human cognition and AI limitations. The <a href="#" data-tab-link="marc">MARC project</a> (Metaphor Abstraction and Reasoning Corpus) uses community-created puzzles to probe what humans can do that AI systems cannot, and doubles as a tool for teaching AI literacy and ethics. Its sibling, <a href="#" data-tab-link="narc">NARC</a> (Narrative Augmented Reasoning Challenges), asks how stories transform visual reasoning &mdash; whether for humans or for machines. I have also been investigating standards of evidence across political and scientific domains, and the philosophical and ethical dimensions of large language models and generative AI.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2>Recent</h2>
+                    <div class="news-item">
+                        <span class="news-date">Nov 2026</span>
+                        <span>Upcoming: two AI sessions at the NCURA regional meeting in Denver, and a poster at the <a href="#" data-tab-link="talks">Philosophy of Science Association</a> meeting in San Diego.</span>
+                    </div>
+                    <div class="news-item">
+                        <span class="news-date">Oct 2026</span>
+                        <span>New on Substack: <a href="https://bertbaum.substack.com/p/narratives-are-all-you-need" target="_blank">&ldquo;Narratives are all you need&rdquo;</a>.</span>
+                    </div>
+                    <div class="news-item">
+                        <span class="news-date">Sep 2026</span>
+                        <span>The first <a href="#" data-tab-link="narc">NARC</a> paper, &ldquo;Only the Story Completes the Grid,&rdquo; is under review at ICLR 2027.</span>
+                    </div>
+                    <div class="news-item">
+                        <span class="news-date">Aug 2026</span>
+                        <span>Invited talk at the University of Edinburgh&rsquo;s Mini Symposium on AI in Science. Our ICPR 2026 workshop paper on metaphor processing in language models was presented in Lyon and is now <a href="https://doi.org/10.1007/978-3-032-39388-3_37" target="_blank">published</a>.</span>
+                    </div>
+                    <div class="news-item">
+                        <span class="news-date">Jun 2026</span>
+                        <span>Participant in the NEH Summer Institute &ldquo;Self-Knowledge for Humans and Artificial Systems&rdquo; at UC Berkeley.</span>
+                    </div>
+                    <div class="news-item">
+                        <span class="news-date">Spring 2026</span>
+                        <span>Released the <a href="#" data-tab-link="data">Good Thinking Corpus and MARC2</a> datasets on Hugging Face, with Zenodo DOIs.</span>
                     </div>
                 </div>
 
@@ -450,6 +521,10 @@
                         <a href="https://youtu.be/vDlz7BPs0hI" target="_blank" class="marc-link">POP Talk (Video)</a>
                         <a href="https://github.com/bertybaums/MetARC-1" target="_blank" class="marc-link">Met-ARC Report</a>
                         <a href="https://github.com/bertybaums/MetARC-1/blob/main/On_Measures_of_Intelligence_We_Live_By___ARC_prize_paper.pdf" target="_blank" class="marc-link">Paper: Measures of Intelligence We Live By</a>
+                        <a href="https://doi.org/10.1007/978-3-032-39388-3_37" target="_blank" class="marc-link">Paper: Metaphor Processing in Decoder-Only LMs (ICPR 2026)</a>
+                        <a href="https://huggingface.co/datasets/bertybaums/marc" target="_blank" class="marc-link">Dataset: MARC</a>
+                        <a href="https://huggingface.co/datasets/bertybaums/marc2" target="_blank" class="marc-link">Dataset: MARC2</a>
+                        <a href="https://github.com/bertybaums/marc-from-larc" target="_blank" class="marc-link">Code: MARC-from-LARC</a>
                     </div>
                 </div>
             </div>
@@ -464,13 +539,15 @@
                     <div class="marc-highlight">
                         <h3>What NARC enables</h3>
                         <p style="margin-top: 0.5rem;"><strong style="color: var(--text-primary);">Research.</strong> NARC is designed to isolate the contribution of narrative to visual reasoning. The corpus draws on Erin James's Story Prism &mdash; a decomposition of narratives into <em>Teller &amp; Told</em>, <em>World</em>, <em>Events</em>, <em>Actors</em>, and <em>How It Feels</em> &mdash; so puzzles can be tagged and varied along specific narrative facets. This makes it possible to ask which facets carry the disambiguating work, and to compare humans and AI systems facet by facet.</p>
-                        <p style="margin-top: 0.75rem;"><strong style="color: var(--text-primary);">Connections.</strong> NARC sits at the intersection of <a href="https://arcprize.org/" target="_blank">ARC-AGI</a>, econarratology, and AI evaluation. Puzzles span literary classics (Hemingway, Kafka, Shelley), scientific concepts (natural selection, entropy, plate tectonics), and philosophical thought experiments (the trolley problem, Plato's cave). Each is rated for both human and AI difficulty.</p>
-                        <p style="margin-top: 0.75rem;"><strong style="color: var(--text-primary);">Corpus.</strong> 134 active puzzles with 484 narrative variants across 72 unique grid sizes, 3&ndash;8 grids per puzzle. The corpus is browseable, solvable, and inspectable online.</p>
+                        <p style="margin-top: 0.75rem;"><strong style="color: var(--text-primary);">Connections.</strong> NARC sits at the intersection of <a href="https://arcprize.org/" target="_blank">ARC-AGI</a>, econarratology, and AI evaluation. Puzzles span literary classics (Hemingway, Kafka, Shelley), scientific concepts (natural selection, entropy, plate tectonics), and philosophical thought experiments (the trolley problem, Plato's cave). The site reports one measured difficulty signal: on how many tested models a puzzle has the NARC property.</p>
+                        <p style="margin-top: 0.75rem;"><strong style="color: var(--text-primary);">Corpus.</strong> 320 active puzzles with 976 narrative variants, 3&ndash;8 grids per puzzle, tested on 12 language models with masking, order, and keyword ablations. A separate set, NARC-tiny, holds 200 puzzles generated from TinyStories by the Narrative Hierarchy Model, a grammar in which every event rewrites into both a sentence and a grid transition. The corpus is browseable, solvable, and inspectable online, and anyone can try the puzzles.</p>
+                        <p style="margin-top: 0.75rem;"><strong style="color: var(--text-primary);">Paper.</strong> &ldquo;Only the Story Completes the Grid: Hand-Authored and Grammar-Generated Puzzles for Narrative Augmented Reasoning&rdquo; is under review at ICLR 2027.</p>
                     </div>
 
                     <div class="marc-links">
                         <a href="https://narc.insight.uidaho.edu" target="_blank" class="marc-link">NARC Website</a>
                         <a href="https://github.com/bertybaums/narc" target="_blank" class="marc-link">GitHub Repository</a>
+                        <a href="https://bertbaum.substack.com/p/narratives-are-all-you-need" target="_blank" class="marc-link">Substack: Narratives Are All You Need</a>
                     </div>
                 </div>
             </div>
@@ -479,7 +556,41 @@
             <div id="talks" class="tab-content">
                 <div class="card">
                     <h2>Selected Presentations</h2>
-                    <p style="margin-bottom: 1rem; font-size: 0.85rem; color: var(--text-muted);">Most recent first. * Invited &nbsp; ** Peer-reviewed</p>
+                    <p style="margin-bottom: 1rem; font-size: 0.85rem; color: var(--text-muted);">Most recent first.</p>
+
+                    <div class="talk-item">
+                        <div class="talk-title">"Measures of Intelligence We Live By: Metaphor, Representation, and Public AI Literacy" (poster)<span class="talk-badge badge-peer">Peer-reviewed</span><span class="talk-badge badge-upcoming">Upcoming</span></div>
+                        <div class="talk-meta">Philosophy of Science Association 30th Biennial Meeting, San Diego, CA, November 19&ndash;22, 2026</div>
+                    </div>
+
+                    <div class="talk-item">
+                        <div class="talk-title">"Your Risk-Averse Mindset Needed: Responsibly Navigating the AI Adoption Rodeo"<span class="talk-badge badge-upcoming">Upcoming</span></div>
+                        <div class="talk-meta">With Nathan Wiggins. NCURA Region VI/VII Regional Meeting (RM26), Denver, CO, November 11, 2026</div>
+                    </div>
+
+                    <div class="talk-item">
+                        <div class="talk-title">"Thinking Well with AI," in the workshop "Augmenting Research Administration with AI"<span class="talk-badge badge-upcoming">Upcoming</span></div>
+                        <div class="talk-meta">With Nathan Layman. NCURA Region VI/VII Regional Meeting (RM26), Denver, CO, November 8, 2026</div>
+                    </div>
+                    <div class="talk-item">
+                        <div class="talk-title">"Generative AI in Research and Academia: Ethical Considerations and Practical Applications"<span class="talk-badge badge-invited">Invited</span></div>
+                        <div class="talk-meta">Postdoc Appreciation Week, University of Idaho, September 24, 2026</div>
+                    </div>
+
+                    <div class="talk-item">
+                        <div class="talk-title">"How AI Spotlights Science's Narrative Blind Spot"<span class="talk-badge badge-invited">Invited</span></div>
+                        <div class="talk-meta">Mini Symposium on AI in Science, School of Philosophy, Psychology and Language Sciences, University of Edinburgh, August 26, 2026</div>
+                    </div>
+
+                    <div class="talk-item">
+                        <div class="talk-title">"Post-Hoc Understanding of Metaphor Processing in Decoder-Only Language Models via Conditional Scale Entropy"<span class="talk-badge badge-peer">Peer-reviewed</span></div>
+                        <div class="talk-meta">With L. Chakrabarti, J. Johnson-Leung, A. Vakanski, M. Xian, B. Zhang. 4th Workshop on Explainable and Ethical AI, ICPR 2026, Lyon, France, August 17&ndash;20, 2026</div>
+                    </div>
+
+                    <div class="talk-item">
+                        <div class="talk-title">"Is a Self a Prerequisite for Solving Puzzles in the Narrative Augmented Reasoning Corpus?"</div>
+                        <div class="talk-meta">NEH Summer Institute on Self-Knowledge for Humans and Artificial Systems, University of California, Berkeley, June 25, 2026</div>
+                    </div>
 
                     <div class="talk-item">
                         <div class="talk-title">"Was the Gettier Problem Inevitable? Language Models as Instruments for Complementary Inquiry"<span class="talk-badge badge-invited">Invited</span></div>
@@ -492,8 +603,18 @@
                     </div>
 
                     <div class="talk-item">
+                        <div class="talk-title">AI and the Arts (panelist)<span class="talk-badge badge-invited">Invited</span></div>
+                        <div class="talk-meta">Lionel Hampton School of Music, University of Idaho, April 14, 2026</div>
+                    </div>
+
+                    <div class="talk-item">
                         <div class="talk-title">"Metaphor in the Machine: From Source to Target Domains without Dogmas about Conceptual Structure"<span class="talk-badge badge-invited">Invited</span></div>
-                        <div class="talk-meta">Pacific American Philosophy Association, April 2026</div>
+                        <div class="talk-meta">Pacific American Philosophy Association, April 12, 2026</div>
+                    </div>
+
+                    <div class="talk-item">
+                        <div class="talk-title">"Creating a Network of Interdisciplinary Human-AI Collaborators"<span class="talk-badge badge-invited">Invited</span></div>
+                        <div class="talk-meta">Innovate Idaho 2026: AI and Open Education Symposium, April 10, 2026 &mdash; <a href="https://event.fourwaves.com/innovateidaho/abstracts/a5b4b661-95fe-4408-93d2-c166eeed924f" target="_blank">Abstract</a></div>
                     </div>
 
                     <div class="talk-item">
@@ -512,6 +633,11 @@
                     </div>
 
                     <div class="talk-item">
+                        <div class="talk-title">"The Grasshopper's Utopia: AI, Games, and the Future You're Playing Into"<span class="talk-badge badge-invited">Invited</span></div>
+                        <div class="talk-meta">Vandal Gaming Convention, University of Idaho, February 28, 2026</div>
+                    </div>
+
+                    <div class="talk-item">
                         <div class="talk-title">"Bots as Foils: Real Students Learn by Teaching AI Students"<span class="talk-badge badge-peer">Peer-reviewed</span></div>
                         <div class="talk-meta">University of Idaho Student Success Symposium: Ignite and Elevate, February 27, 2026</div>
                     </div>
@@ -519,11 +645,6 @@
                     <div class="talk-item">
                         <div class="talk-title">"How Will Our Ability to Access PhD++ Expertise at $20 a Month Impact 'Modeling Collaboration and Innovation'?"</div>
                         <div class="talk-meta">IMCI Brown Bag Lunch Series, February 23, 2026</div>
-                    </div>
-
-                    <div class="talk-item">
-                        <div class="talk-title">"The Grasshopper's Utopia: AI, Games, and the Future You're Playing Into"<span class="talk-badge badge-invited">Invited</span></div>
-                        <div class="talk-meta">Vandal Gaming Convention, University of Idaho, February 28, 2026</div>
                     </div>
 
                     <div class="talk-item">
@@ -578,6 +699,46 @@
                 <div class="card">
                     <h2>Selected Publications</h2>
                     <p style="margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--text-muted);">For a complete list, see my <a href="BaumgaertnerCV.pdf">CV</a> or <a href="https://scholar.google.com/citations?user=57-9utcAAAAJ&hl=en" target="_blank">Google Scholar</a>.</p>
+
+                    <h3 class="list-heading">Preprints &amp; Under Review</h3>
+
+                    <div class="pub-item">
+                        <div class="pub-title">Only the Story Completes the Grid: Hand-Authored and Grammar-Generated Puzzles for Narrative Augmented Reasoning</div>
+                        <div class="pub-meta">Baumgaertner, B. Under review, <em>ICLR 2027</em>.</div>
+                        <a href="https://narc.insight.uidaho.edu" target="_blank" class="pub-link">NARC website</a>
+                    </div>
+
+                    <div class="pub-item">
+                        <div class="pub-title">Ethical Implications of Training Deceptive AI</div>
+                        <div class="pub-meta">Starace, J., Baumgaertner, B., Soule, T. (2026). arXiv:2604.03250.</div>
+                        <a href="https://arxiv.org/abs/2604.03250" target="_blank" class="pub-link">View preprint</a>
+                    </div>
+
+                    <div class="pub-item">
+                        <div class="pub-title">Density Dependence Affects Population Recovery Following an Epidemic</div>
+                        <div class="pub-meta">Antia, R., Baumgaertner, B., Bull, J.J. (2025). <em>bioRxiv</em>.</div>
+                        <a href="https://doi.org/10.64898/2025.12.12.693954" target="_blank" class="pub-link">View preprint</a>
+                    </div>
+
+                    <h3 class="list-heading">Refereed</h3>
+
+                    <div class="pub-item">
+                        <div class="pub-title">Post-Hoc Understanding of Metaphor Processing in Decoder-Only Language Models via Conditional Scale Entropy</div>
+                        <div class="pub-meta">Chakrabarti, L., Johnson-Leung, J., Baumgaertner, B., Vakanski, A., Xian, M., Zhang, B. (2026). In: <em>Pattern Recognition. ICPR 2026 International Workshops</em>, LNCS, 524&ndash;539.</div>
+                        <a href="https://doi.org/10.1007/978-3-032-39388-3_37" target="_blank" class="pub-link">View publication</a>
+                    </div>
+
+                    <div class="pub-item">
+                        <div class="pub-title">Signs of Intelligence: Trust in Generative Artificial Intelligence for Conservation Messaging</div>
+                        <div class="pub-meta">Snow, J., Zajchowski, C.A.B., Karl, J., Baumgaertner, B. (2026). <em>Parks Stewardship Forum</em> 42(3).</div>
+                        <a href="https://doi.org/10.5070/p5.69182" target="_blank" class="pub-link">View publication</a>
+                    </div>
+
+                    <div class="pub-item">
+                        <div class="pub-title">Patterns between Evidence Seeking Behaviors, Reasoning, and Cognitive Reflection: A Supervised Clustering Approach</div>
+                        <div class="pub-meta">Tovissode, C.F., Justwan, F., Baumgaertner, B. (2026). <em>PLoS ONE</em> 21(6): e0352096.</div>
+                        <a href="https://doi.org/10.1371/journal.pone.0352096" target="_blank" class="pub-link">View publication</a>
+                    </div>
 
                     <div class="pub-item">
                         <div class="pub-title">Evaluating Evidentiary Standards in the Realm of Citizen Policy Evaluation</div>
@@ -689,6 +850,78 @@
                 </div>
             </div>
 
+            <!-- DATA & CODE -->
+            <div id="data" class="tab-content">
+                <div class="card">
+                    <h2>Data &amp; Code</h2>
+                    <p style="margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--text-muted);">Public datasets and software from my projects. More on <a href="https://github.com/bertybaums" target="_blank">GitHub</a> and <a href="https://huggingface.co/bertybaums" target="_blank">Hugging Face</a>.</p>
+
+                    <h3 class="list-heading">Datasets</h3>
+
+                    <div class="pub-item">
+                        <div class="pub-title">Good Thinking Corpus</div>
+                        <div class="pub-meta">Baumgaertner, B., Potter, N.A. (2026). 27,252 training records with a 182-code taxonomy for critical thinking, logic, decision theory, and game theory education. DOI: 10.5281/zenodo.19324917</div>
+                        <a href="https://huggingface.co/datasets/bertybaums/good-thinking-corpus" target="_blank" class="pub-link">Hugging Face</a> &nbsp;
+                        <a href="https://doi.org/10.5281/zenodo.19324917" target="_blank" class="pub-link">Zenodo</a> &nbsp;
+                        <a href="https://github.com/bertybaums/good-thinking-bot" target="_blank" class="pub-link">Code</a>
+                    </div>
+
+                    <div class="pub-item">
+                        <div class="pub-title">MARC2: Metaphor Abstraction and Reasoning Corpus v2</div>
+                        <div class="pub-meta">Baumgaertner, B. (2026). Figurative-language puzzles built from ARC-AGI-2 (16,711 rows). DOI: 10.5281/zenodo.19241782</div>
+                        <a href="https://huggingface.co/datasets/bertybaums/marc2" target="_blank" class="pub-link">Hugging Face</a> &nbsp;
+                        <a href="https://doi.org/10.5281/zenodo.19241782" target="_blank" class="pub-link">Zenodo</a> &nbsp;
+                        <a href="https://github.com/bertybaums/marc2" target="_blank" class="pub-link">Code</a>
+                    </div>
+
+                    <div class="pub-item">
+                        <div class="pub-title">MARC: Metaphor Abstraction and Reasoning Corpus</div>
+                        <div class="pub-meta">Baumgaertner, B. (2026). 78 puzzles with 1,230 figurative descriptions and LLM behavioral trial data.</div>
+                        <a href="https://huggingface.co/datasets/bertybaums/marc" target="_blank" class="pub-link">Hugging Face</a>
+                    </div>
+
+                    <div class="pub-item">
+                        <div class="pub-title">NARC: Narrative Augmented Reasoning Challenges</div>
+                        <div class="pub-meta">Baumgaertner, B. (2026). Hand-authored grid-and-story puzzles with model trials and ablations, plus the generated NARC-tiny set. Browse, solve, and inspect online.</div>
+                        <a href="https://narc.insight.uidaho.edu" target="_blank" class="pub-link">Website</a> &nbsp;
+                        <a href="https://github.com/bertybaums/narc" target="_blank" class="pub-link">Code</a>
+                    </div>
+
+                    <div class="pub-item">
+                        <div class="pub-title">CX-Bot: Philosophical Counterexamples</div>
+                        <div class="pub-meta">Baumgaertner, B. (2026). 4,474 counterexamples to definitions across 16 philosophical domains, for training language models to recognize and generate counterexamples.</div>
+                        <a href="https://github.com/bertybaums/cx-bot" target="_blank" class="pub-link">GitHub</a>
+                    </div>
+
+                    <h3 class="list-heading">Software</h3>
+
+                    <div class="pub-item">
+                        <div class="pub-title">Pluto-Toy: Can You Trust What a Tiny Model Tells You?</div>
+                        <div class="pub-meta">A small machine-learning experiment for philosophers: did Pluto's reclassification have to happen? A 50K-parameter transformer with three probes that runs on Colab in about five minutes.</div>
+                        <a href="https://bertybaums.github.io/pluto-toy/" target="_blank" class="pub-link">Website</a> &nbsp;
+                        <a href="https://github.com/bertybaums/pluto-toy" target="_blank" class="pub-link">GitHub</a>
+                    </div>
+
+                    <div class="pub-item">
+                        <div class="pub-title">/planandlearn: Modeling Judgment with Agentic AI</div>
+                        <div class="pub-meta">A Claude Code skill that helps students and postdocs build computational modeling judgment while an AI agent does much of the hands-on building.</div>
+                        <a href="https://github.com/bertybaums/plan-and-learn-modeling" target="_blank" class="pub-link">GitHub</a>
+                    </div>
+
+                    <div class="pub-item">
+                        <div class="pub-title">MARC-from-LARC</div>
+                        <div class="pub-meta">Automated generation and verification pipeline for metaphor-based reasoning puzzles with domain-diverse figurative clues.</div>
+                        <a href="https://github.com/bertybaums/marc-from-larc" target="_blank" class="pub-link">GitHub</a>
+                    </div>
+
+                    <div class="pub-item">
+                        <div class="pub-title">Code Names</div>
+                        <div class="pub-meta">AI vs. AI Codenames tournament engine: language models and embedding agents play Codenames, rated by Elo.</div>
+                        <a href="https://github.com/bertybaums/code-names" target="_blank" class="pub-link">GitHub</a>
+                    </div>
+                </div>
+            </div>
+
             <!-- TEACHING -->
             <div id="teaching" class="tab-content">
                 <div class="card">
@@ -709,6 +942,13 @@
                                 <li>PHIL 4040: Rational Choice and Strategic Interactions</li>
                             </ul>
                         </div>
+                    </div>
+                    <h3 style="margin-top: 1.75rem;">Teaching Tools</h3>
+                    <div class="marc-links" style="margin-top: 0.75rem;">
+                        <a href="https://bertybaums.github.io/decisiontheory/" target="_blank" class="marc-link">Decision Theory: A Conceptual Introduction (draft)</a>
+                        <a href="https://cluer.nkn.uidaho.edu" target="_blank" class="marc-link">Cluer: Semantic Embeddings Game</a>
+                        <a href="https://evidencegame.nkn.uidaho.edu/game/12" target="_blank" class="marc-link">The Evidence Game</a>
+                        <a href="https://www.youtube.com/user/IntroLogic/" target="_blank" class="marc-link">IntroLogic (YouTube)</a>
                     </div>
                     <div class="marc-highlight" style="margin-top: 1.5rem;">
                         <p style="font-size: 0.9rem;">Course materials and syllabi are available for current students on the university's learning management system. Prospective students interested in course content can contact me directly via <a href="mailto:bbaum@uidaho.edu">email</a>.</p>
